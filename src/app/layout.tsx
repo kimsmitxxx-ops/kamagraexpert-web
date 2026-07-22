@@ -35,9 +35,9 @@ const WhatsAppFab = dynamic(
 );
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://anabolenpro.com"),
-  title: { default: "AnabolenPro — lab-getest, vandaag besteld, vandaag verstuurd", template: "%s · AnabolenPro" },
-  description: "AnabolenPro: onafhankelijk lab-getest, anoniem verpakt, 24u verzending vanaf NL-magazijn. Anavar, Dianabol, testosteron-esters, PCT, kuurpakketten.",
+  metadataBase: new URL("https://kamagraexpert.com"),
+  title: { default: "Kamagraexpert — generieke ED-medicatie zonder recept, snel verzonden", template: "%s · Kamagraexpert" },
+  description: "Kamagra, Cenforce, Vidalista en Vilitra: sildenafil, tadalafil en vardenafil direct geïmporteerd van gecertificeerde fabrikanten. Discrete verzending vanaf NL, geen recept nodig.",
   robots: { index: true, follow: true },
   icons: {
     icon: [{ url: "/icon.png", type: "image/png" }],
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="nl" className={`${manrope.variable} ${spaceGrotesk.variable}`}>
+    <html lang="nl" data-shop="kamagraexpert" className={`${manrope.variable} ${spaceGrotesk.variable}`}>
       <head>
         <link rel="preconnect" href="https://rexqfwibxawqnvrzbdoo.supabase.co" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
