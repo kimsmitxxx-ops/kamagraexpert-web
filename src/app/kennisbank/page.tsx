@@ -33,7 +33,7 @@ export default async function KennisbankPage({
       </h1>
       <p className="mt-4 max-w-2xl text-text-muted leading-relaxed">
         Onafhankelijke gidsen over generieke sildenafil, tadalafil en vardenafil.
-        Doseringen, onset, halfwaardetijden, wisselwerkingen en veiligheidsadviezen —
+        Doseringen, onset, halfwaardetijden, wisselwerkingen en veiligheidsadviezen -
         zonder marketing-taal.
       </p>
 

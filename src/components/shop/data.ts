@@ -19,14 +19,14 @@ export interface MainCategory {
 }
 
 export const mainCategories: MainCategory[] = [
-  { slug: "kamagra", name: "Kamagra", tagline: "Klassieke sildenafil 100 mg — snelle werking, betaalbaar.", image: catKamagra, to: "/winkel/kamagra" },
+  { slug: "kamagra", name: "Kamagra", tagline: "Klassieke sildenafil 100 mg - snelle werking, betaalbaar.", image: catKamagra, to: "/winkel/kamagra" },
   { slug: "cenforce", name: "Cenforce", tagline: "Sildenafil in doseringen van 50 tot 200 mg voor precieze titratie.", image: catCenforce, to: "/winkel/cenforce" },
-  { slug: "vidalista", name: "Vidalista", tadalafil: "", tagline: "Tadalafil — werking tot 36 uur, voor spontaniteit zonder timing.", image: catVidalista, to: "/winkel/vidalista" } as any,
-  { slug: "vilitra", name: "Vilitra", tagline: "Vardenafil — vergelijkbaar met Levitra, snelle onset.", image: catVilitra, to: "/winkel/vilitra" },
+  { slug: "vidalista", name: "Vidalista", tadalafil: "", tagline: "Tadalafil - werking tot 36 uur, voor spontaniteit zonder timing.", image: catVidalista, to: "/winkel/vidalista" } as any,
+  { slug: "vilitra", name: "Vilitra", tagline: "Vardenafil - vergelijkbaar met Levitra, snelle onset.", image: catVilitra, to: "/winkel/vilitra" },
   { slug: "combo-preparaten", name: "Combo-preparaten", tagline: "Sildenafil + dapoxetine voor ED én uitgestelde ejaculatie in één tablet.", image: catCombo, to: "/winkel/combo-preparaten" },
 ];
 
-// Legacy exports — categoryContent + findCategoryContent zijn nog geïmporteerd
+// Legacy exports - categoryContent + findCategoryContent zijn nog geïmporteerd
 // door category-view.tsx (stof-cards); voor de ED-shop tonen we geen stof-cards
 // dus we exporten een lege array.
 export interface CategoryContent {
