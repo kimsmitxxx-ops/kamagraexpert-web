@@ -37,7 +37,7 @@ const WhatsAppFab = dynamic(
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kamagraexpert.com"),
-  title: { default: "Kamagraexpert — generieke ED-medicatie zonder recept, snel verzonden", template: "%s · Kamagraexpert" },
+  title: { default: "Kamagraexpert - generieke ED-medicatie zonder recept, snel verzonden", template: "%s · Kamagraexpert" },
   description: "Kamagra, Cenforce, Vidalista en Vilitra: sildenafil, tadalafil en vardenafil direct geïmporteerd van gecertificeerde fabrikanten. Discrete verzending vanaf NL, geen recept nodig.",
   robots: { index: true, follow: true },
   icons: {

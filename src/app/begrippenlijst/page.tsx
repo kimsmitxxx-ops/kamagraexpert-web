@@ -5,7 +5,7 @@ import { BookOpen } from "lucide-react";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-  title: "Begrippenlijst anabolen & AAS — HPLC, PCT, HPTA, aromatisatie | Kamagraexpert",
+  title: "Begrippenlijst anabolen & AAS - HPLC, PCT, HPTA, aromatisatie | Kamagraexpert",
   description:
     "Uitleg van de begrippen die je tegenkomt op kamagraexpert.com en in de kennisbank: AAS, aromatisatie, HPTA, PCT, bloedwerk, Janoshik, ester, half-life en meer. Voor beginners en ervaren gebruikers.",
   alternates: { canonical: "/begrippenlijst" },

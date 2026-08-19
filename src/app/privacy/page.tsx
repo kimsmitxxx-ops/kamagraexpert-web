@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/shop/page-hero";
 
 export const metadata: Metadata = {
-  title: "Privacyverklaring — kamagraexpert",
+  title: "Privacyverklaring - kamagraexpert",
   description:
     "Hoe kamagraexpert persoonsgegevens verwerkt, opslaat en beschermt onder de AVG. Lees welke data we vastleggen en hoe lang.",
 };

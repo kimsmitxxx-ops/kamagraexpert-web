@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Over Kamagraexpert — Team, lab-policy en transparantie",
+  title: "Over Kamagraexpert - Team, lab-policy en transparantie",
   description:
     "Kamagraexpert is een Nederlandse research-shop met Janoshik HPLC lab-test per batch. Lees over ons team van pro-atleten + medisch consultant, onze lab-policy en bedrijfsgegevens.",
   alternates: { canonical: "/over-ons" },
