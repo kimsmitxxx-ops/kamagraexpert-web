@@ -5,7 +5,8 @@ import { formatEUR } from "@/lib/queries";
 import { calcTotals, unitDiscountPct } from "@/lib/bulk-discount";
 import { PaymentRow } from "@/components/payment-row";
 import { Sparkles, UserPlus, Lock } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { track } from "@/lib/analytics";
 
 const EU_COUNTRIES = [
   { code: "NL", name: "Nederland" },
@@ -38,6 +39,14 @@ export default function CheckoutPage() {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
+  // Eén keer per bezoek aan de checkout, ongeacht latere re-renders.
+  useEffect(() => {
+    if (cart.items.length) {
+      track("begin_checkout", { items: cart.items.length, value_cents: totals.total });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
@@ -52,6 +61,11 @@ export default function CheckoutPage() {
         setErr(j.error || "Bestelling kon niet worden aangemaakt");
         return;
       }
+      track("order_placed", {
+        order_reference: j.order_id,
+        value_cents: j.total_cents ?? totals.total,
+        items: cart.items.length,
+      });
       cart.clear();
       // Redirect naar bedankt-pagina met betaalinstructies + screenshot-upload
       window.location.href = `/checkout/bedankt/${j.order_id}`;
