@@ -15,7 +15,7 @@ const sections = [
     id: "wie",
     title: "1. Wie zijn wij",
     body: [
-      "kamagraexpert B.V., gevestigd aan de Westhavenkade 12, 3134 NA Vlaardingen, is verwerkingsverantwoordelijke voor de gegevens die via kamagraexpert.com worden verzameld. Ons KvK- en BTW-nummer staan op de factuur die je na je bestelling ontvangt.",
+      "Kamagraexpert B.V., gevestigd in Nederland, is verwerkingsverantwoordelijke voor de gegevens die via kamagraexpert.com worden verzameld. Ons vestigingsadres, KvK- en BTW-nummer staan op de factuur die je na je bestelling ontvangt.",
     ],
   },
   {

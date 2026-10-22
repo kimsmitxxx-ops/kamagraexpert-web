@@ -19,7 +19,7 @@ const PRIVACY = "We sturen je 1-2 mails per maand · uitschrijven kan altijd";
 export function NewsletterForm({
   variant = "default",
   heading = "Onderzoek in je inbox",
-  subhead = "Studies, batch-updates en nieuwe COA's - zonder verkoopgedoe.",
+  subhead = "Nieuwe voorraad, prijsupdates en artikelen uit de kennisbank. Zonder verkoopgedoe.",
   className,
   onSubmit,
 }: NewsletterFormProps) {

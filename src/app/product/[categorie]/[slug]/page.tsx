@@ -8,8 +8,8 @@ import { MedicalDisclaimer } from "@/components/medical-disclaimer";
 import { ProductGallery } from "@/components/shop/product-gallery";
 import { PaymentRow } from "@/components/payment-row";
 import { RestockNotifyForm } from "@/components/shop/restock-notify-form";
-import { ShieldCheck, Truck, FlaskConical, ArrowLeft, MapPin } from "lucide-react";
-import { shippingMethodForTags, shippingLabel } from "@/lib/shipping";
+import { ShieldCheck, Truck, Factory, ArrowLeft, MapPin } from "lucide-react";
+import { vormLabel } from "@/components/shop/data";
 import type { Metadata } from "next";
 
 export const revalidate = 300;
@@ -23,9 +23,14 @@ export async function generateMetadata({ params }: { params: { categorie: string
   const canonical = p.canonical_url || `/product/${params.categorie}/${params.slug}`;
   return {
     title: p.meta_title || `${p.name} kopen voor ${formatEUR(p.price_cents)}`,
-    description: p.meta_description || p.subtitle || p.description || `${p.name} bij anabolenpro - lab-getest, snelle verzending.`,
+    description: p.meta_description || p.subtitle || p.description || `${p.name} kopen bij Kamagraexpert. Zonder recept, discreet verpakt en snel verstuurd.`,
     alternates: { canonical },
-    robots: noindex ? { index: false, follow: false } : undefined,
+    robots: noindex
+      ? { index: false, follow: false }
+      // Expliciet index/follow: een `undefined` hier overschrijft de
+      // `robots`-metadata uit de root-layout, waardoor productpagina's
+      // helemaal zonder robots-meta de deur uit gingen.
+      : { index: true, follow: true },
     openGraph: {
       title: p.name,
       description: p.subtitle || undefined,
@@ -143,10 +148,10 @@ export default async function ProductDetailPage({ params }: { params: { categori
           {/* USPs prominent - onder add-to-cart */}
           <div className="mt-6 grid grid-cols-1 gap-2.5">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-paper-soft p-3">
-              <FlaskConical className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+              <Factory className="h-5 w-5 text-accent shrink-0 mt-0.5" />
               <div className="text-sm">
-                <p className="font-semibold text-text">100% lab-getest</p>
-                <p className="text-xs text-text-muted">Iedere batch getest door een onafhankelijk lab</p>
+                <p className="font-semibold text-text">Direct van de fabrikant</p>
+                <p className="text-xs text-text-muted">Verzegelde verpakking met batchcode en houdbaarheidsdatum</p>
               </div>
             </div>
             <div className="flex items-start gap-3 rounded-lg border border-border bg-paper-soft p-3">
@@ -165,10 +170,10 @@ export default async function ProductDetailPage({ params }: { params: { categori
             </div>
           </div>
 
-          {p.package_type && <p className="mt-4 text-xs text-text-muted"><strong>Verpakking:</strong> {p.package_type}</p>}
+          {p.package_type && <p className="mt-4 text-xs text-text-muted"><strong>Verpakking:</strong> {vormLabel(p.package_type)}</p>}
           <p className="mt-2 flex items-center gap-1.5 text-xs text-text-muted">
             <MapPin size={12} className="text-accent" />
-            <strong>Verzonden vanuit:</strong> {shippingLabel(shippingMethodForTags(p.tags))}
+            <strong>Verzonden vanuit:</strong> ons magazijn in Nederland, met PostNL
           </p>
 
           {/* Betaalopties - zelfde set als checkout zodat klant weet wat hij straks gaat zien */}
@@ -204,7 +209,7 @@ export default async function ProductDetailPage({ params }: { params: { categori
             {related.filter((r) => r.id !== p.id).slice(0, 4).map((r) => (
               <Link key={r.id} href={`/product/${r.categories?.slug || params.categorie}/${r.slug}`} className="block">
                 <ProductCard
-                  image={r.image_url || "/assets/cat-anabolen.webp"}
+                  image={r.image_url || "/assets/cat-erectie.webp"}
                   name={r.name}
                   slug={r.slug}
                   priceFrom={r.price_cents / 100}

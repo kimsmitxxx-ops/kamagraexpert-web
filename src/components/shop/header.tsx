@@ -9,13 +9,11 @@ import {
   Truck,
   ShieldCheck,
   ChevronDown,
-  Syringe,
-  Star,
+  Pill,
   Store,
-  Compass,
   BookOpen,
 } from "lucide-react";
-import { categoriesByGroup, mainCategories } from "./data";
+import { mainCategories } from "./data";
 import { useCart } from "./cart-store";
 import { MobileMenuDrawer } from "./mobile-menu-drawer";
 
@@ -28,8 +26,8 @@ const LANGS: { code: Lang; label: string; flag: string }[] = [
 
 const TOPBAR_ITEMS = [
   { Icon: ShieldCheck, text: "100% leveringsgarantie" },
-  { Icon: Truck, text: "Snel verzonden - anoniem & discreet verpakt" },
-  { Icon: Star, text: "4,8 / 5 · 1.206 geverifieerde reviews" },
+  { Icon: Truck, text: "Voor 15:00 betaald, dezelfde dag verstuurd" },
+  { Icon: Pill, text: "Sildenafil, tadalafil, vardenafil & dapoxetine" },
 ];
 
 export interface HeaderProps {
@@ -44,9 +42,6 @@ export function Header(_props: HeaderProps = {}) {
   const [topIdx, setTopIdx] = useState(0);
   const langRef = useRef<HTMLDivElement>(null);
   const { count, openCart } = useCart();
-
-  const anabolen = categoriesByGroup("anabolen");
-  const pct = categoriesByGroup("pct");
 
   useEffect(() => {
     function onClick(e: MouseEvent) {
@@ -150,11 +145,11 @@ export function Header(_props: HeaderProps = {}) {
           aria-label="kamagraexpert home"
         >
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-accent/15 text-accent ring-1 ring-accent/30">
-            <Syringe size={15} strokeWidth={2.25} className="-rotate-45" />
+            <Pill size={15} strokeWidth={2.25} className="-rotate-45" />
           </span>
           <span className="leading-none text-base uppercase font-semibold tracking-wider">
-            <span className="text-primary-foreground">ANABOLEN</span>{" "}
-            <span className="text-accent">PRO</span>
+            <span className="text-primary-foreground">KAMAGRA</span>{" "}
+            <span className="text-accent">EXPERT</span>
           </span>
         </Link>
         <form action="/winkel" method="get" className="hidden md:flex flex-1 max-w-2xl mx-auto">
@@ -163,7 +158,7 @@ export function Header(_props: HeaderProps = {}) {
             <input
               type="search"
               name="q"
-              placeholder={lang === "EN" ? "Search products" : "Zoek producten - bv. testosteron, anavar, hgh"}
+              placeholder={lang === "EN" ? "Search products" : "Zoek producten - bv. kamagra, cenforce, vidalista"}
               className="w-full h-10 pl-10 pr-3 rounded-md border border-accent/40 bg-success-soft text-sm font-medium text-primary placeholder:text-primary/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:border-accent shadow-sm"
             />
           </div>
@@ -226,13 +221,6 @@ export function Header(_props: HeaderProps = {}) {
           </div>
 
           <Link
-            href="/kennisbank"
-            onMouseEnter={() => setOpenMega(null)}
-            className="h-11 inline-flex items-center px-4 font-medium text-primary-foreground hover:text-accent border-b-2 border-transparent hover:border-accent transition-colors"
-          >
-            Kennisbank
-          </Link>
-          <Link
             href="/lab"
             onMouseEnter={() => setOpenMega(null)}
             className="h-11 inline-flex items-center px-4 font-medium text-primary-foreground hover:text-accent border-b-2 border-transparent hover:border-accent transition-colors"
@@ -279,59 +267,6 @@ export function Header(_props: HeaderProps = {}) {
           </Link>
         </div>
 
-        {/* Anabolen full-width mega menu (apart, want spans full row) */}
-        {openMega === "anabolen" && (
-          <div
-            onMouseEnter={() => setOpenMega("anabolen")}
-            className="absolute top-full left-0 right-0 bg-primary border-t border-primary-soft shadow-lift text-primary-foreground z-50"
-          >
-            <div className="mx-auto max-w-7xl px-4 py-8 grid grid-cols-[1fr_2fr_1.6fr] gap-10">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.15em] text-accent font-semibold mb-2">
-                    Anabole stoffen + PCT
-                  </p>
-                  <h3 className="font-display text-xl leading-tight">
-                    Per stof uitgesplitst
-                  </h3>
-                  <p className="mt-2 text-sm text-primary-foreground/75 leading-relaxed">
-                    Elke stof heeft een eigen onderzoekspagina met werking, doseringen en bijwerkingen.
-                  </p>
-                </div>
-                <div className="grid grid-cols-2 gap-x-6 gap-y-1">
-                  {anabolen.map((c) => (
-                    <Link
-                      key={c.slug}
-                      href={`/${c.slug}`}
-                      onClick={() => setOpenMega(null)}
-                      className="block px-3 py-2 rounded text-sm text-primary-foreground/85 hover:bg-primary-soft hover:text-accent transition-colors"
-                    >
-                      <span className="font-medium">{c.name}</span>
-                      {c.aka && c.aka.length > 0 && (
-                        <span className="block text-xs text-primary-foreground/55">{c.aka.slice(0, 2).join(" · ")}</span>
-                      )}
-                    </Link>
-                  ))}
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.15em] text-accent-soft font-semibold mb-2 inline-flex items-center gap-1.5">
-                    <Compass size={12} /> Post-cycle therapy
-                  </p>
-                  <div className="grid grid-cols-1 gap-y-0.5">
-                    {pct.map((c) => (
-                      <Link
-                        key={c.slug}
-                        href={`/${c.slug}`}
-                        onClick={() => setOpenMega(null)}
-                        className="block px-3 py-2 rounded text-sm text-primary-foreground/85 hover:bg-primary-soft hover:text-accent transition-colors"
-                      >
-                        <span className="font-medium">{c.name}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
       </div>
       <MobileMenuDrawer open={mobileOpen} onOpenChange={setMobileOpen} />
     </header>

@@ -19,11 +19,9 @@ export function lineSubtotalCents(priceCents: number, qty: number): number {
 export interface CartLikeItem {
   price_cents: number;
   qty: number;
-  /** "ut" / "rest" - bepaalt of dit item via UT-shipping of standaard gaat */
-  shipping_method?: "ut" | "rest";
 }
 
-const SHIPPING_FEE_CENTS = 1000; // €10 per zending
+const SHIPPING_FEE_CENTS = 1000; // EUR 10 per bestelling
 
 export function calcTotals(items: CartLikeItem[]) {
   let subtotalRaw = 0;
@@ -35,10 +33,8 @@ export function calcTotals(items: CartLikeItem[]) {
     subtotal += sub;
   }
   savings = subtotalRaw - subtotal;
-  // Verzending = aantal unieke shipping-methodes in mand × €10
-  const methods = new Set<string>();
-  for (const it of items) methods.add(it.shipping_method || "rest");
-  const shipping = methods.size * SHIPPING_FEE_CENTS;
+  // Een magazijn, dus een vast verzendtarief per bestelling.
+  const shipping = items.length === 0 ? 0 : SHIPPING_FEE_CENTS;
   const total = subtotal + shipping;
-  return { subtotalRaw, subtotal, savings, shipping, total, shippingMethodCount: methods.size };
+  return { subtotalRaw, subtotal, savings, shipping, total };
 }

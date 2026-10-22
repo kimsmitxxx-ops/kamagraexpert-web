@@ -3,20 +3,20 @@ import Link from "next/link";
 import { PageHero } from "@/components/shop/page-hero";
 import { listBlogAuthors } from "@/lib/queries";
 import {
-  FlaskConical,
+  Factory,
   ShieldCheck,
-  Microscope,
+  PackageCheck,
   Users,
-  ClipboardList,
+  BookOpen,
   Mail,
-  MapPin,
+  Truck,
   BadgeCheck,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Over Kamagraexpert - Team, lab-policy en transparantie",
+  title: "Over Kamagraexpert - wie wij zijn en hoe wij werken",
   description:
-    "Kamagraexpert is een Nederlandse research-shop met Janoshik HPLC lab-test per batch. Lees over ons team van pro-atleten + medisch consultant, onze lab-policy en bedrijfsgegevens.",
+    "Kamagraexpert importeert generieke ED-medicatie rechtstreeks bij Ajanta Pharma, Centurion Laboratories en Sunrise Remedies. Lees hoe wij werken, wat wij wel en niet beloven en hoe je ons bereikt.",
   alternates: { canonical: "/over-ons" },
 };
 
@@ -24,34 +24,34 @@ export const revalidate = 600;
 
 const pillars = [
   {
-    icon: FlaskConical,
-    h: "Janoshik HPLC per batch",
-    p: "Iedere binnenkomende batch wordt naar Janoshik Analytical (TS) gestuurd voor HPLC-UV + GC-MS-analyse. COA wordt gepubliceerd per batchcode op de productpagina.",
+    icon: Factory,
+    h: "Rechtstreeks importeren",
+    p: "Wij kopen per productlijn direct bij de fabrikant in, zonder tussenhandel waarin partijen worden omgepakt. Dat houdt de herkomst van een doos navolgbaar en de prijs laag.",
   },
   {
-    icon: Microscope,
-    h: "Afkeur boven 97% - openbaar",
-    p: "Batches onder de 97%-zuiverheidsgrens gaan retour naar de leverancier. Reden van afkeur blijft openbaar in ons archief op /lab - incl. geanonimiseerde batchgegevens.",
+    icon: PackageCheck,
+    h: "Discreet als standaard",
+    p: "Neutrale doos, geen logo of productnaam op het label, en op je bankafschrift alleen onze bedrijfsnaam. Niet als extra optie, maar bij iedere bestelling.",
+  },
+  {
+    icon: Truck,
+    h: "Dezelfde dag de deur uit",
+    p: "Betaling binnen voor 15:00 op een werkdag betekent diezelfde dag verstuurd via PostNL. Nederland doorgaans de volgende werkdag, Belgie een dag later.",
+  },
+  {
+    icon: BookOpen,
+    h: "Uitleg zonder verkooppraat",
+    p: "Onze kennisbank legt uit wanneer je iets juist niet moet gebruiken. Dat kost ons af en toe een bestelling, en dat is precies de bedoeling.",
   },
   {
     icon: ShieldCheck,
-    h: "Lab-garantie",
-    p: "Wijkt het gemeten gehalte meer dan 5% af van het op het label vermelde gehalte? Geld terug of een batch uit de volgende productie, zonder discussie.",
-  },
-  {
-    icon: ClipboardList,
-    h: "Eigen-test op aanvraag",
-    p: "Klanten kunnen een product van een ander merk naar ons opsturen - wij regelen de Janoshik-meting (kostprijs, gratis bij vermoeden onveilig product). Aanvraag via /lab.",
+    h: "Geen claims die we niet waar kunnen maken",
+    p: "Wij zijn importeur, geen laboratorium en geen apotheek. We adverteren dus niet met eigen labanalyses, keurmerken of medisch advies op maat.",
   },
   {
     icon: Users,
-    h: "Door en voor enhanced atleten",
-    p: "Het team bestaat uit een IFBB Pro, een IPF powerlifter, een coach en een medisch consultant. Schrijven en advies komt uit ervaring + lab-data, niet uit marketing-brochures.",
-  },
-  {
-    icon: MapPin,
-    h: "NL-magazijn in Vlaardingen",
-    p: "Alles verzonden vanaf Westhavenkade 12, 3134 NA Vlaardingen. Anoniem verpakt, betaling voor 11:00 op een werkdag = dezelfde dag verstuurd via PostNL of DPD.",
+    h: "Vragen gaan naar een mens",
+    p: "Mail en contactformulier worden door onze eigen klantenservice beantwoord, doorgaans binnen een werkdag. Geen chatbot die in cirkels praat.",
   },
 ];
 
@@ -62,48 +62,66 @@ export default async function OverOnsPage() {
     <>
       <PageHero
         eyebrow="Over Kamagraexpert"
-        title="Lab-data-gedreven, eerlijk over risico - niet zomaar nóg een shop"
-        intro="Kamagraexpert is opgericht omdat de NL-markt vol zit met underdosed labels, vage labjes en leveranciers die plots offline gaan. Wij testen iedere batch onafhankelijk via Janoshik, publiceren afkeuringen openbaar en laten enhanced atleten + een medisch consultant onze content schrijven. Geen marketing-brochures, wel echte cijfers."
+        title="Generieke ED-medicatie, zonder de drempel en zonder de merktoeslag"
+        intro="Kamagraexpert is een Nederlandse importeur van generieke erectiemiddelen. Wij halen Kamagra, Cenforce, Vidalista en Vilitra rechtstreeks bij de fabrikant en sturen ze discreet vanuit Nederland door. Geen wachtkamer, geen gesprek waar je tegenop ziet, en geen apotheekprijs voor een molecuul waarvan het patent allang is verlopen."
       />
 
       <section className="mx-auto max-w-7xl px-4 py-14 grid gap-10 lg:grid-cols-2 items-start">
         <div className="space-y-5 text-text-muted leading-relaxed">
           <p>
-            We zijn een klein NL team: schrijvers (atleten + medisch consultant), klantenservice
-            via chat en mail, en een logistiek planner. Allemaal mensen die zelf in de scene actief
-            zijn of dat lang geweest zijn.
+            Erectieproblemen komen veel vaker voor dan het gesprek erover doet vermoeden. Ruwweg
+            een op de drie mannen krijgt er ooit mee te maken, en met de leeftijd loopt dat op. Toch
+            blijft het voor veel mannen bij googelen om twee uur s nachts.
           </p>
           <p>
-            Ons doel is helder: ieder product dat onze deur uit gaat, heeft een batchcode op het
-            flesje die je publiek kunt opzoeken op de productpagina - daar staat het PDF-rapport
-            van Janoshik Analytical: werkzame stof, gemeten zuiverheid, oplosmiddel-residu en
-            eventuele isomeren. Onder 97%? Dan komt-ie niet in de shop. Punt.
+            Wij zijn begonnen omdat die combinatie onnodig duur en onnodig ongemakkelijk is. De
+            werkzame stof in Kamagra is dezelfde sildenafil als in Viagra. Het patent daarop is
+            verlopen, de ontwikkelkosten zijn terugverdiend en generieke fabrikanten maken hetzelfde
+            molecuul voor een fractie van de prijs. Wat je bij een merkmiddel extra betaalt is de
+            naam op de doos.
           </p>
           <p>
-            We schrijven óók over de slechte batches die we tegenkomen in de markt - eigen
-            metingen of door klanten aangeleverd. Dat zorgt voor wrijving met sommige
-            concurrenten, maar dat is wat de community vooruit helpt.
+            Daar hoort wel eerlijkheid bij over wat wij niet zijn. Wij leveren zonder recept, dus er
+            kijkt geen arts met je mee. Gebruik je nitraten, heb je hartklachten of slik je
+            alfablokkers, dan is overleg met een huisarts geen formaliteit maar noodzaak. Die
+            informatie staat bij ons vooraan in plaats van onderaan in de kleine lettertjes.
           </p>
         </div>
         <div className="rounded-md border border-border bg-surface p-6 lg:p-8">
-          <p className="text-xs uppercase tracking-[0.15em] text-accent font-semibold">In cijfers (2026)</p>
-          <dl className="mt-4 grid grid-cols-2 gap-y-6 gap-x-4">
-            {[
-              ["99,1%", "Gemiddelde zuiverheid"],
-              ["186", "Producten online"],
-              ["7", "Afgekeurde batches in archief"],
-              ["4", "Onafhankelijke partner-labs"],
-            ].map(([n, l]) => (
-              <div key={l}>
-                <div className="font-display text-3xl text-text tabular">{n}</div>
-                <div className="text-xs uppercase tracking-[0.12em] text-text-subtle mt-1">{l}</div>
-              </div>
-            ))}
+          <p className="text-xs uppercase tracking-[0.15em] text-accent font-semibold">In het kort</p>
+          <dl className="mt-5 space-y-4 text-sm">
+            <div className="flex gap-3">
+              <dt className="w-36 shrink-0 text-text-muted">Wat we verkopen</dt>
+              <dd className="text-text">
+                Generieke PDE5-remmers met sildenafil, tadalafil of vardenafil, en combinaties met
+                dapoxetine
+              </dd>
+            </div>
+            <div className="flex gap-3">
+              <dt className="w-36 shrink-0 text-text-muted">Fabrikanten</dt>
+              <dd className="text-text">
+                Ajanta Pharma, Centurion Laboratories en Sunrise Remedies.{" "}
+                <Link href="/lab" className="text-accent hover:underline">
+                  Meer over herkomst
+                </Link>
+              </dd>
+            </div>
+            <div className="flex gap-3">
+              <dt className="w-36 shrink-0 text-text-muted">Verzending</dt>
+              <dd className="text-text">Vanuit Nederland met PostNL, neutraal verpakt</dd>
+            </div>
+            <div className="flex gap-3">
+              <dt className="w-36 shrink-0 text-text-muted">Levergebied</dt>
+              <dd className="text-text">Nederland en Belgie</dd>
+            </div>
+            <div className="flex gap-3">
+              <dt className="w-36 shrink-0 text-text-muted">Betalen</dt>
+              <dd className="text-text">Bankoverschrijving, geen creditcard of tussenpartij</dd>
+            </div>
           </dl>
         </div>
       </section>
 
-      {/* Team-schrijvers - kernpunt voor E-E-A-T compliance */}
       {authors.length > 0 && (
         <section className="bg-paper border-y border-border">
           <div className="mx-auto max-w-7xl px-4 py-16">
@@ -111,11 +129,6 @@ export default async function OverOnsPage() {
             <h2 className="mt-2 font-display text-3xl md:text-4xl text-primary">
               Wie er achter onze content staat
             </h2>
-            <p className="mt-3 max-w-3xl text-primary/70 leading-relaxed">
-              Geen anonieme tekstschrijvers - onze blogs zijn geschreven door enhanced atleten met
-              competitie-ervaring en een medisch consultant. Iedere schrijver heeft eigen
-              specialisaties en publiceert vanuit eigen praktijk-data.
-            </p>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               {authors.map((a) => (
                 <article
@@ -156,12 +169,6 @@ export default async function OverOnsPage() {
                       ))}
                     </ul>
                   )}
-                  {a.expertise && a.expertise.length > 0 && (
-                    <p className="mt-4 text-[11px] text-text-subtle">
-                      <span className="font-semibold text-text-muted">Expertise:</span>{" "}
-                      {a.expertise.slice(0, 6).join(" · ")}
-                    </p>
-                  )}
                 </article>
               ))}
             </div>
@@ -171,7 +178,7 @@ export default async function OverOnsPage() {
 
       <section className="bg-surface border-y border-border">
         <div className="mx-auto max-w-7xl px-4 py-14">
-          <h2 className="font-display text-3xl text-text max-w-2xl">Zes principes die ons werk sturen</h2>
+          <h2 className="font-display text-3xl text-text max-w-2xl">Zes dingen die ons werk sturen</h2>
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {pillars.map((p) => (
               <div key={p.h} className="rounded-md border border-border bg-background p-5">
@@ -184,7 +191,6 @@ export default async function OverOnsPage() {
         </div>
       </section>
 
-      {/* Bedrijfsgegevens - kritiek voor trust + GDPR */}
       <section className="mx-auto max-w-7xl px-4 py-14">
         <div className="rounded-md border border-border bg-surface p-8 lg:p-10 grid gap-8 lg:grid-cols-2">
           <div>
@@ -192,19 +198,15 @@ export default async function OverOnsPage() {
             <h2 className="mt-2 font-display text-2xl text-text">Kamagraexpert</h2>
             <dl className="mt-5 space-y-2 text-sm">
               <div className="flex gap-2">
-                <dt className="w-28 text-text-muted">Sinds</dt>
-                <dd className="text-text">2019</dd>
+                <dt className="w-32 text-text-muted">Vestiging</dt>
+                <dd className="text-text">Nederland</dd>
               </div>
               <div className="flex gap-2">
-                <dt className="w-28 text-text-muted">Magazijn</dt>
-                <dd className="text-text">Westhavenkade 12, 3134 NA Vlaardingen</dd>
+                <dt className="w-32 text-text-muted">KvK en BTW</dt>
+                <dd className="text-text">Staan op de factuur die je na je bestelling ontvangt.</dd>
               </div>
               <div className="flex gap-2">
-                <dt className="w-28 text-text-muted">KvK / BTW</dt>
-                <dd className="text-text">Staat op de factuur na bestelling.</dd>
-              </div>
-              <div className="flex gap-2">
-                <dt className="w-28 text-text-muted">Contact</dt>
+                <dt className="w-32 text-text-muted">Contact</dt>
                 <dd className="text-text">
                   <Link className="text-accent hover:underline" href="/contact">
                     contactformulier op de site
@@ -212,13 +214,13 @@ export default async function OverOnsPage() {
                 </dd>
               </div>
               <div className="flex gap-2">
-                <dt className="w-28 text-text-muted">Support-uren</dt>
-                <dd className="text-text">ma-vr 09:00-21:00 · za-zo 10:00-18:00</dd>
+                <dt className="w-32 text-text-muted">Reactietijd</dt>
+                <dd className="text-text">Doorgaans binnen een werkdag</dd>
               </div>
             </dl>
             <p className="mt-4 text-xs text-text-subtle">
-              Bezoek aan het magazijn is niet mogelijk. Voor klacht-, retour- of urgente vragen
-              gebruik de chat (rechtsonder) - daar staat een medewerker direct.
+              Bezoek aan het magazijn is niet mogelijk. Voor vragen over een lopende bestelling is
+              het contactformulier de snelste route, met je ordernummer erbij.
             </p>
           </div>
 
@@ -226,16 +228,22 @@ export default async function OverOnsPage() {
             <p className="text-xs uppercase tracking-[0.15em] text-accent font-semibold">Onze positie</p>
             <h2 className="mt-2 font-display text-2xl text-text">Eerlijk, niet pushy</h2>
             <p className="mt-3 text-sm text-text-muted leading-relaxed">
-              Wij verkopen <strong>research-grade materialen</strong> voor educatieve en
-              onderzoeksdoeleinden - niet als medicatie. Anabolen en peptiden zijn in Nederland
-              niet toegelaten voor humaan gebruik buiten medisch voorschrift. Wij promoten geen
-              recreatief gebruik. Wat wij wél doen: zorgen dat als iemand deze keuze maakt, hij
-              precies weet wat er in het flesje zit en welke risico's eraan vastzitten.
+              De middelen die wij verkopen zijn generieke geneesmiddelen die in Nederland normaal
+              gesproken op recept via de apotheek gaan. Wij leveren ze zonder recept. Dat betekent
+              dat de verantwoordelijkheid voor een veilige keuze deels bij jou komt te liggen, en
+              dat wij je daar zo goed mogelijk bij willen informeren.
             </p>
             <p className="mt-3 text-sm text-text-muted leading-relaxed">
-              Onze content is geschreven door enhanced atleten en een medisch consultant - geen
-              copywriters. Bij twijfel of klachten: raadpleeg een arts en stop het gebruik. Bij
-              bloedwerk-vragen: lees onze gids in de <Link href="/kennisbank/welk-bloedwerk-doe-je-voor-tijdens-en-na-een-aas-kuur" className="text-accent hover:underline">kennisbank</Link>.
+              Gebruik je nitraten of poppers, dan is een PDE5-remmer levensgevaarlijk. Heb je
+              hartklachten, een lage bloeddruk of gebruik je alfablokkers, overleg dan eerst met een
+              arts. Wat die combinaties precies doen staat in onze{" "}
+              <Link
+                href="/kennisbank/wisselwerkingen-ed-medicatie-nitraten-alfablokkers"
+                className="text-accent hover:underline"
+              >
+                gids over wisselwerkingen
+              </Link>
+              .
             </p>
             <Link
               href="/contact"

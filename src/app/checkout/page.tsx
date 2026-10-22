@@ -107,7 +107,7 @@ export default function CheckoutPage() {
                   <UserPlus size={14} className="text-accent" /> Maak meteen een account aan
                 </p>
                 <p className="mt-0.5 text-xs text-text-muted">
-                  Volg je bestellingen, herhaal eerdere kuren in 1 klik en zie je COA-archief terug.
+                  Volg je bestellingen en plaats een herhaalbestelling in een klik.
                 </p>
               </div>
             </label>
@@ -235,14 +235,7 @@ export default function CheckoutPage() {
                 <span className="tabular">{formatEUR(totals.subtotal)}</span>
               </div>
               <div className="flex justify-between text-text-muted">
-                <span>
-                  Verzending
-                  {totals.shippingMethodCount > 1 && (
-                    <span className="block text-[10px] text-text-subtle">
-                      {totals.shippingMethodCount}× zending uit verschillende magazijnen
-                    </span>
-                  )}
-                </span>
+                <span>Verzending</span>
                 <span className="tabular">{formatEUR(totals.shipping)}</span>
               </div>
               <div className="mt-2 flex justify-between font-display text-lg pt-2 border-t border-paper-border">

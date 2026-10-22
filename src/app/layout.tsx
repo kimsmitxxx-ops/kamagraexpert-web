@@ -58,15 +58,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://rexqfwibxawqnvrzbdoo.supabase.co" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        {/* Preload hero image (LCP) - AVIF eerst voor moderne browsers (55KB vs 91KB jpg).
-            Browsers die geen AVIF doen, vallen automatisch op de webp/jpg <picture> source. */}
-        <link
-          rel="preload"
-          as="image"
-          href="/assets/transform-after.avif"
-          type="image/avif"
-          fetchPriority="high"
-        />
       </head>
       <body>
         <AnalyticsTracker />

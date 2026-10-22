@@ -5,7 +5,7 @@ import { MessageCircle, Send, UserRound, Loader2, AlertCircle } from "lucide-rea
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 
 const SHOP_DASH_URL = process.env.NEXT_PUBLIC_SHOP_DASH_URL || "https://shop-dash-ruby.vercel.app";
-const SHOP_ID = "209efc65-a11e-499c-a74a-3d1c5043758f"; // anabolenpro
+const SHOP_ID = "209efc65-a11e-499c-a74a-3d1c5043758f"; // kamagraexpert
 const LS_CHAT_ID = "apo_chat_id";
 const LS_VISITOR = "apo_chat_visitor";
 const POLL_MS = 7000;
@@ -246,7 +246,7 @@ function ChatPanel({ open, onOpenChange }: { open: boolean; onOpenChange: (v: bo
         {step === "intake" ? (
           <form onSubmit={submit} className="flex-1 overflow-y-auto px-5 py-4 space-y-3">
             <p className="text-sm text-text-muted">
-              Vraag over een product, batchcode of bestelling? Stuur een bericht - we reageren
+              Vraag over een product, een dosering of je bestelling? Stuur een bericht - we reageren
               tussen 09:00 en 21:00. Standaardvragen krijg je meteen antwoord op, specifieke
               vragen zetten we door naar een medewerker en beantwoorden we via e-mail.
             </p>

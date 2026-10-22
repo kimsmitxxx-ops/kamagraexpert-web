@@ -2,22 +2,21 @@ import Link from "next/link";
 import { listCategories, listProducts, sortProducts } from "@/lib/queries";
 import { ProductCard } from "@/components/product-card";
 import { CatalogFilters } from "@/components/shop/catalog-filters";
-import { KNOWN_BRANDS, sortBrands } from "@/lib/brands";
 import type { Metadata } from "next";
-import { BookOpen, Truck, ShieldCheck, FlaskConical, Sparkles } from "lucide-react";
+import { BookOpen, Truck, ShieldCheck, PackageCheck, Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Winkel - alle anabolen, PCT en kuurpakketten",
-  description: "Volledig overzicht van anabolenpro: Anavar, Dianabol, Testosteron-esters, Trenbolone, Masteron, Boldenone, PCT en kuurpakketten. Lab-getest per batch.",
+  title: "Winkel - alle ED-medicatie op een rij",
+  description: "De volledige catalogus van Kamagraexpert: Kamagra, Cenforce, Vidalista, Vilitra en combi-preparaten met sildenafil, tadalafil, vardenafil en dapoxetine. Zonder recept, discreet verzonden vanuit Nederland.",
   alternates: { canonical: "/winkel" },
 };
 
 export default async function WinkelIndexPage({
   searchParams,
 }: {
-  searchParams: { stock?: string; merk?: string; stof?: string; locatie?: string; q?: string };
+  searchParams: { stock?: string; stof?: string; vorm?: string; q?: string };
 }) {
   const [categories, allProducts] = await Promise.all([
     listCategories(),
@@ -25,28 +24,23 @@ export default async function WinkelIndexPage({
   ]);
 
   const stockOnly = searchParams.stock === "1";
-  const merk = searchParams.merk || "";
   const stof = (searchParams.stof || "").toLowerCase();
-  const locatie = searchParams.locatie || "";
+  const vorm = (searchParams.vorm || "").toLowerCase();
   const q = (searchParams.q || "").trim().toLowerCase();
 
-  const brandSet = new Set<string>();
-  allProducts.forEach((p) => p.tags?.forEach((t) => { if (KNOWN_BRANDS.has(t)) brandSet.add(t); }));
-  const brands = sortBrands(Array.from(brandSet));
+  const vormen = Array.from(new Set(allProducts.map((p) => p.package_type).filter(Boolean) as string[]));
 
   const filtered = allProducts.filter((p) => {
     if (stockOnly && p.availability === "OutOfStock") return false;
-    if (merk && !(p.tags || []).includes(merk)) return false;
     if (stof && !(p.stof_slugs || []).includes(stof)) return false;
-    if (locatie === "01" && !(p.tags || []).includes("UT")) return false;
-    if (locatie === "02" && (p.tags || []).includes("UT")) return false;
+    if (vorm && p.package_type !== vorm) return false;
     if (q) {
       const hay = `${p.name} ${p.slug} ${(p.tags || []).join(" ")} ${(p.stof_slugs || []).join(" ")} ${p.subtitle || ""}`.toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;
   });
-  const products = sortProducts(filtered as any);
+  const products = sortProducts(filtered);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
@@ -55,7 +49,8 @@ export default async function WinkelIndexPage({
       </div>
       <h1 className="font-display text-3xl md:text-4xl">Volledige catalogus</h1>
       <p className="mt-3 max-w-2xl text-text-muted">
-        Alles van anabolenpro op één plek. Klik op een categorie voor diepgaande info of scroll voor het hele aanbod.
+        Alle ED-medicatie op een plek. Filter op werkzame stof of toedieningsvorm, of klik een
+        categorie aan voor uitleg over die productlijn.
       </p>
 
       <div className="mt-6 rounded-lg border border-accent/30 bg-accent-soft/15 p-4 flex items-start gap-3">
@@ -90,14 +85,14 @@ export default async function WinkelIndexPage({
               ))}
             </div>
           </div>
-          <CatalogFilters brands={brands} stockOnly={stockOnly} activeBrand={merk} activeStof={stof} activeLocatie={locatie} />
+          <CatalogFilters stockOnly={stockOnly} activeStof={stof} activeVorm={vorm} vormen={vormen} />
           <div className="rounded-lg border border-border bg-surface p-4 text-text space-y-3 text-sm">
             <h4 className="text-xs uppercase tracking-wider text-accent-muted font-semibold inline-flex items-center gap-1.5">
               <ShieldCheck size={12} /> Onze garanties
             </h4>
-            <p className="inline-flex items-start gap-2"><Truck size={14} className="text-accent mt-0.5" /> Snel verzonden · 100% leveringsgarantie</p>
-            <p className="inline-flex items-start gap-2"><FlaskConical size={14} className="text-accent mt-0.5" /> Iedere batch lab-getest (COA in product)</p>
-            <p className="inline-flex items-start gap-2"><ShieldCheck size={14} className="text-accent mt-0.5" /> 100% anoniem &amp; discreet verpakt</p>
+            <p className="inline-flex items-start gap-2"><Truck size={14} className="text-accent mt-0.5" /> Voor 15:00 betaald is dezelfde dag verstuurd</p>
+            <p className="inline-flex items-start gap-2"><PackageCheck size={14} className="text-accent mt-0.5" /> Neutrale verpakking, geen productnaam op het label</p>
+            <p className="inline-flex items-start gap-2"><ShieldCheck size={14} className="text-accent mt-0.5" /> 100% leveringsgarantie, anders opnieuw verstuurd</p>
           </div>
         </aside>
 
@@ -107,7 +102,7 @@ export default async function WinkelIndexPage({
             {products.map((p) => (
               <Link key={p.id} href={`/product/${p.categories?.slug || "winkel"}/${p.slug}`} className="block">
                 <ProductCard
-                  image={p.image_url || "/assets/cat-anabolen.webp"}
+                  image={p.image_url || "/assets/cat-erectie.webp"}
                   name={p.name}
                   slug={p.slug}
                   priceFrom={p.price_cents / 100}

@@ -2,11 +2,11 @@ import { CheckCircle2 } from "lucide-react";
 import { FilterSection } from "./filter-section";
 
 const USPS = [
-  "HPLC-getest per batch (COA)",
-  "Volledige terugbetaling bij mismatch",
+  "Direct geimporteerd bij de fabrikant",
+  "Houdbaarheidsdatum zichtbaar voor je bestelt",
   "Discreet, neutraal verpakt",
-  "Verzonden binnen 24 uur",
-  "Versleutelde betaling",
+  "Voor 15:00 betaald is dezelfde dag verstuurd",
+  "100% leveringsgarantie",
 ];
 
 export function UspChecks({ defaultOpen = false }: { defaultOpen?: boolean }) {

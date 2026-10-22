@@ -2,14 +2,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/shop/page-hero";
 import { FaqAccordion } from "@/components/faq-accordion";
-import { ShieldCheck, FlaskConical, Mail, AlertTriangle } from "lucide-react";
+import { ShieldCheck, PackageCheck, Mail, AlertTriangle } from "lucide-react";
 
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Retour en terugbetaling - Kamagraexpert",
   description:
-    "Retourzendingen zijn in onze branche niet mogelijk. Wat wél: 100% leveringsgarantie bij vertraging of vermissing en lab-vervanging bij batch-afwijking.",
+    "Retourzendingen zijn in onze branche niet mogelijk. Wat wel kan: 100% leveringsgarantie bij vertraging of vermissing, en kosteloze vervanging bij een beschadigde of verkeerde levering.",
   alternates: { canonical: "/retourneren" },
 };
 
@@ -20,9 +20,9 @@ const cards = [
     sub: "Komt je pakket niet aan binnen 14 dagen? Nieuwe verzending zonder discussie of extra kosten.",
   },
   {
-    icon: FlaskConical,
-    title: "Lab-garantie per batch",
-    sub: "Wijkt het gehalte meer dan 5% af van het COA? Wij vervangen het item kosteloos in je volgende bestelling.",
+    icon: PackageCheck,
+    title: "Beschadigd of verkeerd geleverd",
+    sub: "Kapotte blister, verkeerde sterkte of een kortere houdbaarheid dan aangegeven? Wij vervangen het kosteloos in je volgende bestelling.",
   },
   {
     icon: AlertTriangle,
@@ -48,14 +48,14 @@ const faq = [
       "Als tijdens de verwerking blijkt dat een item toch niet meer leverbaar is, bieden wij een alternatief van gelijke waarde aan. Wil je liever wachten? Dan versturen we het niet-leverbare item apart na zodra het weer binnen is - zonder extra verzendkosten.",
   },
   {
-    question: "Klopt het gehalte niet met het COA - wat nu?",
+    question: "Mijn blisters zijn beschadigd of de sterkte klopt niet. Wat nu?",
     answer:
-      "Als een onafhankelijk lab-rapport aantoont dat het werkelijke gehalte meer dan 5% afwijkt van het COA dat wij hebben gepubliceerd, vervangen wij het product kosteloos in je volgende bestelling. Stuur ons het lab-rapport samen met je batchnummer via het contactformulier - je kunt bestanden meesturen als bijlage.",
+      "Stuur via het contactformulier een foto van de strip en de doos mee, met je ordernummer erbij. Zie je dat de houdbaarheidsdatum korter is dan op de productpagina stond, of klopt de sterkte niet met wat je besteld hebt, dan vervangen wij het kosteloos in je volgende zending. Neem in dat geval niets in voordat je van ons hoort.",
   },
   {
     question: "Kan ik mijn geld terugkrijgen?",
     answer:
-      "Nee, terugbetalingen zijn niet mogelijk. Wat we wél doen: bij niet-aankomst = opnieuw verzenden, bij batch-afwijking = kosteloze vervanging in je volgende bestelling. Neem daarom vóór je betaalt goed de tijd om je bestelling te controleren.",
+      "Nee, terugbetalingen zijn niet mogelijk. Wat we wel doen: bij niet-aankomst versturen we opnieuw, en bij een beschadigde of verkeerde levering vervangen we het kosteloos in je volgende bestelling. Neem daarom voordat je betaalt goed de tijd om je bestelling te controleren.",
   },
 ];
 

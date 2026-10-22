@@ -1,22 +1,41 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCategory, listProducts, listCategories, sortProducts } from "@/lib/queries";
+import { getCategory, listProducts, listCategories, sortProducts, listBuyPages } from "@/lib/queries";
 import { ProductCard } from "@/components/product-card";
 import { CatalogFilters } from "@/components/shop/catalog-filters";
 import { CollapsibleIntro } from "@/components/shop/collapsible-intro";
-import { KNOWN_BRANDS, sortBrands } from "@/lib/brands";
+import { BuyPageLinks } from "@/components/shop/buy-page-links";
 import type { Metadata } from "next";
-import { BookOpen, Truck, ShieldCheck, FlaskConical, Sparkles } from "lucide-react";
+import { BookOpen, Truck, ShieldCheck, PackageCheck, Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export async function generateMetadata({ params }: { params: { categorie: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: { categorie: string };
+  searchParams: { stock?: string; stof?: string; vorm?: string; q?: string };
+}): Promise<Metadata> {
   const cat = await getCategory(params.categorie);
   if (!cat) return { title: "Niet gevonden" };
+
+  // De koop-pagina (/<categorie>-kopen) is de ranking-target voor "<naam>
+  // kopen". Deze pagina is de browse-weergave en krijgt daarom een eigen
+  // invalshoek in de title, zodat de twee niet om dezelfde query vechten.
+  const filtered = Boolean(searchParams?.stock || searchParams?.stof || searchParams?.vorm || searchParams?.q);
+
   return {
-    title: cat.meta_title || `${cat.name} kopen`,
-    description: cat.meta_description || cat.description || `${cat.name} bij anabolenpro - lab-getest, snel uit Nederland.`,
+    title: cat.meta_title || `${cat.name} assortiment - alle varianten en prijzen`,
+    description:
+      cat.meta_description ||
+      cat.description ||
+      `Het volledige ${cat.name}-assortiment van Kamagraexpert, met prijs en voorraad per variant. Discreet verpakt en snel verstuurd vanuit Nederland.`,
+    // Gefilterde varianten zijn facetten van dezelfde lijst: canonical naar de
+    // schone URL en uit de index houden, anders indexeert Google elke
+    // filtercombinatie als losse pagina.
     alternates: { canonical: `/winkel/${cat.slug}` },
+    robots: filtered ? { index: false, follow: true } : { index: true, follow: true },
     openGraph: { title: cat.name, description: cat.description || undefined, type: "website" },
   };
 }
@@ -26,37 +45,33 @@ export default async function CategoryPage({
   searchParams,
 }: {
   params: { categorie: string };
-  searchParams: { stock?: string; merk?: string; stof?: string; locatie?: string; q?: string };
+  searchParams: { stock?: string; stof?: string; vorm?: string; q?: string };
 }) {
-  const [cat, allProducts, allCategories] = await Promise.all([
+  const [cat, allProducts, allCategories, buyPages] = await Promise.all([
     getCategory(params.categorie),
     listProducts({ categorySlug: params.categorie }),
     listCategories(),
+    listBuyPages(),
   ]);
   if (!cat) notFound();
 
   const stockOnly = searchParams.stock === "1";
-  const merk = searchParams.merk || "";
   const stof = (searchParams.stof || "").toLowerCase();
-  const locatie = searchParams.locatie || "";
+  const vorm = (searchParams.vorm || "").toLowerCase();
   const q = (searchParams.q || "").trim().toLowerCase();
-  const brandSet = new Set<string>();
-  allProducts.forEach((p) => p.tags?.forEach((t) => { if (KNOWN_BRANDS.has(t)) brandSet.add(t); }));
-  const brands = sortBrands(Array.from(brandSet));
+  const vormen = Array.from(new Set(allProducts.map((p) => p.package_type).filter(Boolean) as string[]));
 
   const filtered = allProducts.filter((p) => {
     if (stockOnly && p.availability === "OutOfStock") return false;
-    if (merk && !(p.tags || []).includes(merk)) return false;
     if (stof && !(p.stof_slugs || []).includes(stof)) return false;
-    if (locatie === "01" && !(p.tags || []).includes("UT")) return false;
-    if (locatie === "02" && (p.tags || []).includes("UT")) return false;
+    if (vorm && p.package_type !== vorm) return false;
     if (q) {
       const hay = `${p.name} ${p.slug} ${(p.tags || []).join(" ")} ${(p.stof_slugs || []).join(" ")} ${p.subtitle || ""}`.toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;
   });
-  const products = sortProducts(filtered as any);
+  const products = sortProducts(filtered);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -128,14 +143,17 @@ export default async function CategoryPage({
               ))}
             </div>
           </div>
-          <CatalogFilters brands={brands} stockOnly={stockOnly} activeBrand={merk} activeStof={stof} activeLocatie={locatie} />
+          <CatalogFilters stockOnly={stockOnly} activeStof={stof} activeVorm={vorm} vormen={vormen} />
+          {/* Interne links naar de koop-pagina's - die moeten op de
+              transactionele termen ranken en hebben links nodig. */}
+          <BuyPageLinks pages={buyPages.slice(0, 8)} title="Kopen per soort" compact />
           <div className="rounded-lg border border-border bg-surface p-4 text-text space-y-3 text-sm">
             <h4 className="text-xs uppercase tracking-wider text-accent-muted font-semibold inline-flex items-center gap-1.5">
               <ShieldCheck size={12} /> Onze garanties
             </h4>
-            <p className="inline-flex items-start gap-2"><Truck size={14} className="text-accent mt-0.5" /> Snel verzonden · 100% leveringsgarantie</p>
-            <p className="inline-flex items-start gap-2"><FlaskConical size={14} className="text-accent mt-0.5" /> Iedere batch lab-getest (COA in product)</p>
-            <p className="inline-flex items-start gap-2"><ShieldCheck size={14} className="text-accent mt-0.5" /> 100% anoniem &amp; discreet verpakt</p>
+            <p className="inline-flex items-start gap-2"><Truck size={14} className="text-accent mt-0.5" /> Voor 15:00 betaald is dezelfde dag verstuurd</p>
+            <p className="inline-flex items-start gap-2"><PackageCheck size={14} className="text-accent mt-0.5" /> Neutrale verpakking, geen productnaam op het label</p>
+            <p className="inline-flex items-start gap-2"><ShieldCheck size={14} className="text-accent mt-0.5" /> 100% leveringsgarantie, anders opnieuw verstuurd</p>
           </div>
         </aside>
 
@@ -151,7 +169,7 @@ export default async function CategoryPage({
                 {products.map((p) => (
                   <Link key={p.id} href={`/product/${p.categories?.slug || cat.slug}/${p.slug}`} className="block">
                     <ProductCard
-                      image={p.image_url || "/assets/cat-anabolen.webp"}
+                      image={p.image_url || "/assets/cat-erectie.webp"}
                       name={p.name}
                       slug={p.slug}
                       priceFrom={p.price_cents / 100}

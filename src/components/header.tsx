@@ -17,7 +17,7 @@ export function Header({ categories }: { categories: { slug: string; name: strin
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex items-center gap-4 py-3">
           <Link href="/" className="font-display text-xl font-semibold tracking-tight">
-            anabolen<span className="text-accent">pro</span>
+            kamagra<span className="text-accent">expert</span>
           </Link>
           <form
             onSubmit={(e) => { e.preventDefault(); router.push(`/winkel?q=${encodeURIComponent(q)}`); }}
@@ -27,7 +27,7 @@ export function Header({ categories }: { categories: { slug: string; name: strin
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary-foreground/40" />
               <input
                 value={q} onChange={(e) => setQ(e.target.value)}
-                placeholder="Zoek anavar, deca, nakuur…"
+                placeholder="Zoek kamagra, cenforce, vidalista…"
                 className="w-full rounded-full border border-primary-muted bg-primary-soft px-4 py-2 pl-9 text-sm text-primary-foreground placeholder:text-primary-foreground/40 outline-none focus:border-accent"
               />
             </div>
@@ -35,7 +35,7 @@ export function Header({ categories }: { categories: { slug: string; name: strin
           <nav className="ml-auto hidden items-center gap-1 md:flex">
             <Link href="/winkel" className="rounded-full px-3 py-2 text-sm hover:bg-primary-soft">Winkel</Link>
             <Link href="/kennisbank" className="rounded-full px-3 py-2 text-sm hover:bg-primary-soft">Kennisbank</Link>
-            <Link href="/lab" className="rounded-full px-3 py-2 text-sm hover:bg-primary-soft">Lab</Link>
+            <Link href="/lab" className="rounded-full px-3 py-2 text-sm hover:bg-primary-soft">Kwaliteit</Link>
             <Link href="/account" className="ml-2 inline-flex items-center gap-1.5 rounded-full border border-primary-muted px-3 py-2 text-sm hover:bg-primary-soft">
               <User className="h-4 w-4" /> Account
             </Link>

@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
-import { mainCategories, categoriesByGroup } from "./data";
-import { Store, BookOpen, FlaskConical, Mail, User, ChevronRight, Compass } from "lucide-react";
+import { mainCategories, STOF_FILTERS } from "./data";
+import { Store, BookOpen, ShieldCheck, Mail, User, ChevronRight, Library } from "lucide-react";
 
 interface Props {
   open: boolean;
@@ -10,8 +10,6 @@ interface Props {
 }
 
 export function MobileMenuDrawer({ open, onOpenChange }: Props) {
-  const anabolen = categoriesByGroup("anabolen");
-  const pct = categoriesByGroup("pct");
   const close = () => onOpenChange(false);
 
   return (
@@ -41,33 +39,16 @@ export function MobileMenuDrawer({ open, onOpenChange }: Props) {
           </section>
 
           <section>
-            <p className="text-[10px] uppercase tracking-[0.18em] text-accent-soft font-semibold mb-2">Anabolen per stof</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-accent-soft font-semibold mb-2">Werkzame stof</p>
             <ul className="grid grid-cols-2 gap-x-2">
-              {anabolen.map((c) => (
-                <li key={c.slug}>
+              {STOF_FILTERS.map((st) => (
+                <li key={st.slug}>
                   <Link
-                    href={`/${c.slug}`}
+                    href={`/winkel?stof=${st.slug}`}
                     onClick={close}
                     className="block px-2 py-1.5 rounded text-sm text-primary-foreground/80 hover:bg-primary-soft hover:text-accent"
                   >
-                    {c.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section>
-            <p className="text-[10px] uppercase tracking-[0.18em] text-accent-soft font-semibold mb-2">PCT</p>
-            <ul className="grid grid-cols-2 gap-x-2">
-              {pct.map((c) => (
-                <li key={c.slug}>
-                  <Link
-                    href={`/${c.slug}`}
-                    onClick={close}
-                    className="block px-2 py-1.5 rounded text-sm text-primary-foreground/80 hover:bg-primary-soft hover:text-accent"
-                  >
-                    {c.name}
+                    {st.label}
                   </Link>
                 </li>
               ))}
@@ -82,8 +63,8 @@ export function MobileMenuDrawer({ open, onOpenChange }: Props) {
                 </Link>
               </li>
               <li>
-                <Link href="/keuzehulp" onClick={close} className="flex items-center gap-3 px-2 py-2.5 rounded text-sm text-primary-foreground/85 hover:bg-primary-soft hover:text-accent">
-                  <Compass size={16} className="text-accent" /> Keuzehulp
+                <Link href="/begrippenlijst" onClick={close} className="flex items-center gap-3 px-2 py-2.5 rounded text-sm text-primary-foreground/85 hover:bg-primary-soft hover:text-accent">
+                  <Library size={16} className="text-accent" /> Begrippenlijst
                 </Link>
               </li>
               <li>
@@ -93,7 +74,7 @@ export function MobileMenuDrawer({ open, onOpenChange }: Props) {
               </li>
               <li>
                 <Link href="/lab" onClick={close} className="flex items-center gap-3 px-2 py-2.5 rounded text-sm text-primary-foreground/85 hover:bg-primary-soft hover:text-accent">
-                  <FlaskConical size={16} className="text-accent" /> Labtesten
+                  <ShieldCheck size={16} className="text-accent" /> Herkomst &amp; kwaliteit
                 </Link>
               </li>
               <li>

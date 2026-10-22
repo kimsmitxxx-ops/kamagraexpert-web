@@ -32,7 +32,7 @@ export default function CookiesPage() {
         <p>Deze plaatsen we altijd, anders werkt de site niet:</p>
         <ul>
           <li>
-            <strong>anabolenpro.cart.v1</strong> (localStorage) - onthoudt wat in je winkelmand
+            <strong>kamagraexpert.cart.v2</strong> (localStorage) - onthoudt wat in je winkelmand
             zit, zelfs als je tussendoor weggaat. Verloopt niet automatisch, je kunt 'm
             handmatig wissen via je browser.
           </li>
@@ -41,7 +41,7 @@ export default function CookiesPage() {
             op een eigen klant-account. 7 dagen geldig.
           </li>
           <li>
-            <strong>anabolenpro.cookies.v1</strong> (localStorage) - onthoudt je cookie-keuze
+            <strong>kamagraexpert.cookies.v1</strong> (localStorage) - onthoudt je cookie-keuze
             zodat je de banner niet elke pagina opnieuw ziet.
           </li>
           <li>
@@ -73,7 +73,7 @@ export default function CookiesPage() {
 
         <h2>4. Cookie-voorkeur wijzigen</h2>
         <p>
-          Wis de sleutel <code>anabolenpro.cookies.v1</code> uit je browser-localStorage
+          Wis de sleutel <code>kamagraexpert.cookies.v1</code> uit je browser-localStorage
           om de banner opnieuw te zien. In Chrome: rechter-muisknop op de site → <em>Inspect</em>{" "}
           → Tab <em>Application</em> → Local Storage → klik op het item en delete.
         </p>

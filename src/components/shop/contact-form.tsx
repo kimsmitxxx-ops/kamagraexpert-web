@@ -113,7 +113,7 @@ export function ContactForm() {
               className="w-full h-11 px-3 rounded border border-primary-muted bg-primary-soft text-sm text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               <option>Vraag over een bestelling</option>
-              <option>Lab- of COA-vraag</option>
+              <option>Vraag over een product of verpakking</option>
               <option>Retour aanmelden</option>
               <option>Productadvies</option>
               <option>Anders</option>

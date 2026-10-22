@@ -68,14 +68,7 @@ export default function WinkelmandPage() {
                 </div>
               )}
               <div className="mt-2 flex justify-between text-sm text-text-muted">
-                <span>
-                  Verzending
-                  {totals.shippingMethodCount > 1 && (
-                    <span className="block text-[10px] text-text-subtle">
-                      {totals.shippingMethodCount}× zending - verschillende magazijnen
-                    </span>
-                  )}
-                </span>
+                <span>Verzending</span>
                 <span>{formatEUR(totals.shipping)}</span>
               </div>
               <div className="mt-4 flex justify-between border-t border-paper-border pt-4 text-lg font-display">
@@ -86,7 +79,7 @@ export default function WinkelmandPage() {
                 Naar checkout
               </Link>
               <p className="mt-3 text-center text-[11px] text-text-subtle">
-                €10 verzending per magazijn (UT-producten apart van standaard-magazijn Vlaardingen).
+                Verzending €10 per bestelling, ongeacht het aantal items.
               </p>
             </div>
           </div>

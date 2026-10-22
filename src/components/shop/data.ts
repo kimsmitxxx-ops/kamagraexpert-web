@@ -1,14 +1,11 @@
 /**
  * Shared static data voor kamagraexpert-web.
- * Product-catalog + blogs komen uit Supabase; deze file bevat alleen
- * hero-illustraties en category-tegel fallbacks voor de homepage.
+ * Product-catalog + blogs komen uit Supabase; deze file bevat de vaste
+ * navigatie-vocabulaire (categorieen, werkzame stoffen, toedieningsvormen)
+ * en de fallback-beelden voor de homepage-tegels.
  */
 
-const catKamagra = "/assets/cat-kamagra.jpg";
-const catCenforce = "/assets/cat-cenforce.jpg";
-const catVidalista = "/assets/cat-vidalista.jpg";
-const catVilitra = "/assets/cat-vilitra.jpg";
-const catCombo = "/assets/cat-combo.jpg";
+const catErectie = "/assets/cat-erectie.webp";
 
 export interface MainCategory {
   slug: string;
@@ -19,48 +16,63 @@ export interface MainCategory {
 }
 
 export const mainCategories: MainCategory[] = [
-  { slug: "kamagra", name: "Kamagra", tagline: "Klassieke sildenafil 100 mg - snelle werking, betaalbaar.", image: catKamagra, to: "/winkel/kamagra" },
-  { slug: "cenforce", name: "Cenforce", tagline: "Sildenafil in doseringen van 50 tot 200 mg voor precieze titratie.", image: catCenforce, to: "/winkel/cenforce" },
-  { slug: "vidalista", name: "Vidalista", tadalafil: "", tagline: "Tadalafil - werking tot 36 uur, voor spontaniteit zonder timing.", image: catVidalista, to: "/winkel/vidalista" } as any,
-  { slug: "vilitra", name: "Vilitra", tagline: "Vardenafil - vergelijkbaar met Levitra, snelle onset.", image: catVilitra, to: "/winkel/vilitra" },
-  { slug: "combo-preparaten", name: "Combo-preparaten", tagline: "Sildenafil + dapoxetine voor ED én uitgestelde ejaculatie in één tablet.", image: catCombo, to: "/winkel/combo-preparaten" },
+  {
+    slug: "kamagra",
+    name: "Kamagra",
+    tagline: "Sildenafil 100 mg van Ajanta Pharma, als tablet, jelly, kauwtablet of bruistablet.",
+    image: catErectie,
+    to: "/winkel/kamagra",
+  },
+  {
+    slug: "cenforce",
+    name: "Cenforce",
+    tagline: "Sildenafil van 50 tot 200 mg, zodat je de dosering precies kunt opbouwen.",
+    image: catErectie,
+    to: "/winkel/cenforce",
+  },
+  {
+    slug: "vidalista",
+    name: "Vidalista",
+    tagline: "Tadalafil met een werkingsduur tot 36 uur, geen strakke timing nodig.",
+    image: catErectie,
+    to: "/winkel/vidalista",
+  },
+  {
+    slug: "vilitra",
+    name: "Vilitra",
+    tagline: "Vardenafil, het alternatief voor wie slecht reageert op sildenafil.",
+    image: catErectie,
+    to: "/winkel/vilitra",
+  },
+  {
+    slug: "combo-preparaten",
+    name: "Combo-preparaten",
+    tagline: "Sildenafil of tadalafil met dapoxetine in een tablet: erectie en uitstel in een.",
+    image: catErectie,
+    to: "/winkel/combo-preparaten",
+  },
 ];
 
-// Legacy exports - categoryContent + findCategoryContent zijn nog geïmporteerd
-// door category-view.tsx (stof-cards); voor de ED-shop tonen we geen stof-cards
-// dus we exporten een lege array.
-export interface CategoryContent {
-  slug: string;
-  group: "anabolen" | "pct";
-  name: string;
-  aka: string[];
-  tagline: string;
-  heroImage: string;
-  heroImageAlt: string;
-  intro: string;
-  longIntro?: string;
-  keyFacts: { label: string; value: string }[];
-  sections: { heading: string; body: string }[];
-  faqs?: { q: string; a: string }[];
-  usps?: string[];
-  related?: string[];
-  knowledge?: string[];
-  resultImage?: string;
-  resultImageAlt?: string;
+/** Werkzame stoffen. Slug = waarde van de ?stof= filter en van products.stof_slugs. */
+export const STOF_FILTERS: { slug: string; label: string }[] = [
+  { slug: "sildenafil", label: "Sildenafil" },
+  { slug: "tadalafil", label: "Tadalafil" },
+  { slug: "vardenafil", label: "Vardenafil" },
+  { slug: "dapoxetine", label: "Dapoxetine" },
+];
+
+/** Toedieningsvormen. Slug = waarde van de ?vorm= filter en van products.package_type. */
+export const VORM_FILTERS: { slug: string; label: string }[] = [
+  { slug: "tablet", label: "Tablet" },
+  { slug: "oral-jelly", label: "Oral jelly" },
+  { slug: "kauwtablet", label: "Kauwtablet" },
+  { slug: "bruistablet", label: "Bruistablet" },
+];
+
+export function stofLabel(slug: string): string {
+  return STOF_FILTERS.find((s) => s.slug === slug)?.label || slug;
 }
 
-export const categoryContent: CategoryContent[] = [];
-
-export function findCategoryContent(slug: string): CategoryContent | undefined {
-  return categoryContent.find((c) => c.slug === slug);
-}
-
-export function findCategoryContentByGroup(group: "anabolen" | "pct") {
-  return categoryContent.filter((c) => c.group === group);
-}
-
-// Alias, sommige components importeren dit; retourneert een lege array
-// omdat er in de ED-shop geen stof-cards zijn zoals bij anabolenpro.
-export function categoriesByGroup(_group: "anabolen" | "pct"): CategoryContent[] {
-  return [];
+export function vormLabel(slug: string): string {
+  return VORM_FILTERS.find((v) => v.slug === slug)?.label || slug;
 }

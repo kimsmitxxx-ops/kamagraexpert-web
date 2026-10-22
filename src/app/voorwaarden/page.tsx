@@ -15,9 +15,9 @@ const sections: { id: string; title: string; body: string[] }[] = [
     id: "definities",
     title: "1. Definities",
     body: [
-      "kamagraexpert: kamagraexpert B.V., gevestigd te Westhavenkade 12, 3134 NA Vlaardingen. Ons KvK- en BTW-nummer staan op de factuur die je na bestelling ontvangt.",
+      "Kamagraexpert: Kamagraexpert B.V., gevestigd in Nederland. Ons vestigingsadres, KvK- en BTW-nummer staan op de factuur die je na je bestelling ontvangt.",
       "Klant: de natuurlijke of rechtspersoon die een overeenkomst aangaat met kamagraexpert.",
-      "Producten: alle door kamagraexpert aangeboden artikelen, uitsluitend bestemd voor onderzoeksdoeleinden in een laboratoriumomgeving en niet voor menselijke consumptie.",
+      "Producten: alle door Kamagraexpert aangeboden artikelen, te weten generieke geneesmiddelen met sildenafil, tadalafil, vardenafil of dapoxetine als werkzame stof.",
     ],
   },
   {
@@ -33,7 +33,7 @@ const sections: { id: string; title: string; body: string[] }[] = [
     title: "3. Het aanbod",
     body: [
       "Alle aanbiedingen op de website zijn vrijblijvend en zolang de voorraad strekt.",
-      "Het aanbod bevat een volledige en nauwkeurige omschrijving, inclusief batchnummer, gehalte volgens COA en oorsprong.",
+      "Het aanbod bevat een volledige en nauwkeurige omschrijving, inclusief werkzame stof, sterkte, toedieningsvorm en fabrikant.",
       "Kennelijke vergissingen of fouten in het aanbod binden kamagraexpert niet.",
     ],
   },
@@ -76,19 +76,19 @@ const sections: { id: string; title: string; body: string[] }[] = [
   },
   {
     id: "garantie",
-    title: "8. Lab-garantie en conformiteit",
+    title: "8. Conformiteit van de levering",
     body: [
-      "kamagraexpert staat ervoor in dat elk product voldoet aan de specificaties zoals weergegeven op het Certificate of Analysis (COA) van de bijbehorende batch.",
-      "Wijkt het werkelijke gehalte, vastgesteld door een onafhankelijk laboratorium, meer dan 5% af van het opgegeven COA, dan vervangt kamagraexpert het product kosteloos in de volgende zending.",
+      "Kamagraexpert staat ervoor in dat het geleverde product overeenkomt met de werkzame stof, de sterkte, de toedieningsvorm en de fabrikant zoals vermeld op de productpagina, en dat de verpakking ongeopend en voorzien van batchcode en houdbaarheidsdatum wordt geleverd.",
+      "Wijkt de levering daarvan af, of is de verpakking bij ontvangst beschadigd, dan vervangt Kamagraexpert het product kosteloos in de volgende zending. Meld dit binnen veertien dagen na ontvangst via het contactformulier, met foto van doos en blister.",
     ],
   },
   {
     id: "aansprakelijkheid",
-    title: "9. Aansprakelijkheid en doeleinde",
+    title: "9. Aansprakelijkheid en verantwoord gebruik",
     body: [
-      "Producten van kamagraexpert zijn uitsluitend bestemd voor onderzoeksdoeleinden in een laboratoriumomgeving en niet voor menselijke of dierlijke consumptie.",
-      "De klant is volledig zelf verantwoordelijk voor het gebruik en de toepassing van de geleverde producten.",
-      "kamagraexpert aanvaardt geen aansprakelijkheid voor schade, direct of indirect, voortvloeiend uit een ander gebruik dan het hierboven omschreven doel.",
+      "De producten van Kamagraexpert zijn geneesmiddelen die in Nederland gewoonlijk op recept via de apotheek worden verstrekt. Kamagraexpert levert zonder recept en verstrekt geen medisch advies op maat; er vindt dus geen beoordeling door een arts plaats.",
+      "De klant verklaart meerderjarig te zijn en verantwoordelijk te zijn voor een veilig gebruik. Dat betekent in elk geval: niet gebruiken in combinatie met nitraten, poppers of riociguat, en eerst een arts raadplegen bij hart- en vaatziekten, een recent infarct of beroerte, een lage of slecht ingestelde bloeddruk, lever- of nierproblemen of bij gebruik van alfablokkers.",
+      "Kamagraexpert aanvaardt geen aansprakelijkheid voor schade die voortvloeit uit gebruik dat afwijkt van de gebruikelijke dosering of uit gebruik ondanks een van de hierboven genoemde contra-indicaties.",
     ],
   },
   {

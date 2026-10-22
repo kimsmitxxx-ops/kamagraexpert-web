@@ -2,6 +2,8 @@
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://rexqfwibxawqnvrzbdoo.supabase.co";
 
 module.exports = {
+  // Zodat een controle-build naast een draaiende dev-server kan: NEXT_DIST_DIR=.next-check
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   // Defensive: don't break build on lint/type errors during deploy
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },

@@ -5,8 +5,7 @@ export const revalidate = 3600;
 /**
  * /llms.txt - AI-crawler manifest per llmstxt.org spec.
  * Bevat shop-identiteit + diepte-links naar categorie-, product- en
- * kennisbank-content. Alleen UT-producten (onze SEO-focus brand) komen er
- * in; non-UT staat ook in onze winkel maar krijgt geen AI-promotie.
+ * kennisbank-content. Producten met noindex blijven eruit.
  */
 export async function GET() {
   const [shop, categories, products, blogs] = await Promise.all([
@@ -16,23 +15,23 @@ export async function GET() {
     listBlogPosts(50),
   ]);
 
-  const utProducts = products.filter((p: any) => p.noindex !== true && (p.tags || []).includes("UT"));
+  const indexeerbaar = products.filter((p: any) => p.noindex !== true);
 
   const lines: string[] = [];
   lines.push("# Kamagraexpert");
   lines.push("");
-  lines.push("> Nederlandse anabolen-webshop met no-bullshit aanpak. Iedere batch lab-getest bij Janoshik Analytical (HPLC + GC-MS), COA publiek per batchcode. Wij waarschuwen openbaar voor afgekeurde batches in de markt. Anoniem verpakt vanaf NL-magazijn (Vlaardingen), 24u verzending. Voor krachtsporters van eerste kuur tot gevorderden, en mannen die info zoeken over PCT, dosering of stack-combinaties.");
+  lines.push("> Nederlandse webshop voor generieke ED-medicatie zonder recept. Kamagra, Cenforce, Vidalista en Vilitra met sildenafil, tadalafil, vardenafil of dapoxetine, rechtstreeks geimporteerd bij Ajanta Pharma, Centurion Laboratories en Sunrise Remedies. Neutraal verpakt, verzonden vanuit Nederland naar NL en BE, betaling via bankoverschrijving. De kennisbank behandelt onset, werkingsduur, doseringen, verschillen tussen de stoffen en wisselwerkingen zoals nitraten en alfablokkers.");
   lines.push("");
   lines.push("## Catalogus");
   lines.push("");
   for (const c of categories) {
     lines.push(`- [${c.name}](https://kamagraexpert.com/winkel/${c.slug}): ${c.description || c.name}`);
   }
-  if (utProducts.length > 0) {
+  if (indexeerbaar.length > 0) {
     lines.push("");
-    lines.push("## Producten (United Tabs · lab-getest per batch)");
+    lines.push("## Producten");
     lines.push("");
-    for (const p of utProducts) {
+    for (const p of indexeerbaar) {
       const catSlug = (p as any).categories?.slug || "winkel";
       const blurb = p.subtitle || p.description || p.name;
       lines.push(`- [${p.name}](https://kamagraexpert.com/product/${catSlug}/${p.slug}): ${blurb}`);
@@ -45,8 +44,9 @@ export async function GET() {
     lines.push(`- [${b.title}](https://kamagraexpert.com/kennisbank/${b.slug}): ${b.excerpt || b.title}`);
   }
   lines.push("");
-  lines.push("## Lab & transparantie");
-  lines.push("- [Hoe wij batches testen](https://kamagraexpert.com/lab): Janoshik-protocol, afkeur-archief, eigen-test aanvragen");
+  lines.push("## Herkomst en kwaliteit");
+  lines.push("- [Waar onze medicatie vandaan komt](https://kamagraexpert.com/lab): fabrikanten, waarom generiek hetzelfde molecuul is, zelf een strip controleren");
+  lines.push("- [Begrippenlijst](https://kamagraexpert.com/begrippenlijst): PDE5-remmer, onset, halfwaardetijd, nitraten en andere termen");
   lines.push("");
   lines.push("## Optional");
   lines.push("- [Sitemap](https://kamagraexpert.com/sitemap.xml)");

@@ -2,7 +2,7 @@
  * Supabase server-side client voor data fetching in Next.js server components.
  *
  * Fallback URL + anon key zijn hardcoded - beide PUBLIC. RLS-policies in
- * shop-dash migration 021 scopen alle SELECT-queries naar anabolenpro shop_id.
+ * shop-dash migration 051 scopen alle SELECT-queries naar kamagraexpert shop_id.
  * Zonder env vars op Vercel werkt de shop dus alsnog.
  */
 import { createClient } from "@supabase/supabase-js";
@@ -18,6 +18,10 @@ const SB_ANON =
  */
 export const supabase = createClient(SB_URL, SB_ANON, {
   auth: { persistSession: false, autoRefreshToken: false },
+  // Zie anabolenpro en anabolendoktor: Next cachet fetches in de Vercel Data
+  // Cache en die overleeft een deploy, dus force-dynamic alleen levert alsnog
+  // oude data uit Supabase.
+  global: { fetch: (url, init) => fetch(url, { ...init, cache: "no-store" }) },
 });
 
 /**

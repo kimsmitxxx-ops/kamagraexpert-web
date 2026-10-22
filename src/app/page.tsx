@@ -108,7 +108,7 @@ export default async function HomePage() {
             <h1 className="mt-5 font-display text-4xl md:text-6xl leading-[1.05] tracking-tight">
               Generieke ED-medicatie
               <br />
-              <span className="text-accent-soft">zonder de merk-toeslag.</span>
+              <span className="text-accent-soft">zonder merktoeslag.</span>
               <span className="block mt-3 text-base md:text-lg font-sans font-normal tracking-normal text-primary-foreground/70">
                 Sildenafil · Tadalafil · Vardenafil · Dapoxetine - zonder recept, discreet verpakt, vandaag verstuurd.
               </span>
@@ -116,7 +116,7 @@ export default async function HomePage() {
             <p className="mt-5 text-lg text-primary-foreground/80 max-w-xl leading-relaxed">
               Kamagra, Cenforce, Vidalista en Vilitra - chemisch identiek aan Viagra, Cialis
               en Levitra maar voor een fractie van de prijs. Directe import van gecertificeerde
-              Indiase fabrikanten. Bulk-korting vanaf 3 doosjes, neutrale verpakking en
+              Indiase fabrikanten. Bulk-korting vanaf 5 stuks, neutrale verpakking en
               binnen 24 uur op de post.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
@@ -292,7 +292,7 @@ export default async function HomePage() {
             Krijg als eerste bericht bij nieuwe voorraden en tijdelijke aanbiedingen. Geen spam, unsubscribe met één klik.
           </p>
           <div className="mt-6 flex justify-center">
-            <NewsletterForm variant="hero-mini" />
+            <NewsletterForm variant="footer-mini" />
           </div>
         </div>
       </section>

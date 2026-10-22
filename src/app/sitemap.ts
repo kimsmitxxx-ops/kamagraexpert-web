@@ -1,15 +1,16 @@
 import { MetadataRoute } from "next";
-import { listProducts, listCategories, listBlogPosts } from "@/lib/queries";
+import { listProducts, listCategories, listBlogPosts, listBuyPages } from "@/lib/queries";
 
 const BASE = "https://kamagraexpert.com";
 
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [products, categories, blogs] = await Promise.all([
+  const [products, categories, blogs, buyPages] = await Promise.all([
     listProducts({ limit: 500 }),
     listCategories(),
     listBlogPosts(200),
+    listBuyPages(),
   ]);
 
   const staticRoutes = [
@@ -22,6 +23,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/bezorging`, changeFrequency: "monthly" as const, priority: 0.4 },
     { url: `${BASE}/contact`, changeFrequency: "monthly" as const, priority: 0.3 },
   ];
+
+  // Koop-pagina's staan hoog in de sitemap: dit zijn de pagina's die op de
+  // transactionele zoektermen moeten ranken.
+  const buyRoutes = buyPages
+    .filter((p) => p.noindex !== true && !p.canonical_url)
+    .map((p) => ({
+      url: `${BASE}/${p.slug}`,
+      lastModified: new Date(p.updated_at),
+      changeFrequency: "daily" as const,
+      priority: 0.95,
+    }));
 
   const categoryRoutes = categories.map((c) => ({
     url: `${BASE}/winkel/${c.slug}`,
@@ -46,5 +58,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...productRoutes, ...blogRoutes];
+  return [...staticRoutes, ...buyRoutes, ...categoryRoutes, ...productRoutes, ...blogRoutes];
 }

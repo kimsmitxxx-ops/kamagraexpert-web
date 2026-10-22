@@ -3,7 +3,7 @@ import { AlertTriangle, Info } from "lucide-react";
 interface Props {
   /**
    * Variant - `inline` voor een neutrale compact block (op product-pages),
-   * `prominent` voor een opvallender block (op stof-info-pagina's en risico-pagina).
+   * `prominent` voor een opvallender block (op pagina's over risico en dosering).
    */
   variant?: "inline" | "prominent";
   /**
@@ -15,10 +15,10 @@ interface Props {
 
 /**
  * Medische disclaimer-snippet voor E-E-A-T compliance op YMYL-content.
- * Plaats op stof-info-pagina's, risico-pagina, product-pages.
+ * Plaats op product-pages en op kennisbank-artikelen over dosering of risico.
  *
- * Tekst is bewust vrij algemeen - voldoet aan Google Medic update guidelines
- * + Nederlandse warenwetregels voor research-peptiden / niet voor humaan gebruik.
+ * De tekst benoemt de twee dingen die er bij PDE5-remmers echt toe doen: de
+ * nitraat-combinatie en wanneer je een arts raadpleegt.
  */
 export function MedicalDisclaimer({ variant = "inline", extra }: Props) {
   const isProminent = variant === "prominent";
@@ -40,15 +40,17 @@ export function MedicalDisclaimer({ variant = "inline", extra }: Props) {
         )}
         <div className="space-y-1.5 leading-relaxed">
           <p>
-            <strong>Disclaimer.</strong> De informatie op deze pagina is bedoeld voor educatieve
-            doeleinden en harm-reduction - niet als medisch advies. Anabolen, peptiden en SERM/AI
-            kunnen ernstige bijwerkingen geven (hart, lever, hormonale as) en zijn in Nederland
-            niet toegelaten voor humaan gebruik buiten medisch voorschrift.
+            <strong>Disclaimer.</strong> De informatie op deze pagina is bedoeld om je te
+            informeren en vervangt geen consult bij een arts. PDE5-remmers zoals sildenafil,
+            tadalafil en vardenafil zijn in Nederland receptgeneesmiddelen; wij leveren ze zonder
+            recept, waardoor er niemand met je meekijkt.
           </p>
           <p>
-            Gebruik je deze stoffen, doe het dan onder bloedwerk-monitoring (voor, tijdens en na)
-            en raadpleeg een arts bij twijfel of klachten. Onze producten worden verkocht als
-            <em> research-grade materialen</em> - niet als medicatie.
+            Combineer ze <strong>nooit</strong> met nitraten of poppers: dat kan een
+            levensgevaarlijke bloeddrukdaling geven. Overleg eerst met een arts bij hartklachten,
+            een recent infarct of beroerte, een lage bloeddruk, lever- of nierproblemen, of bij
+            gebruik van alfablokkers. Houdt een erectie langer dan vier uur aan of val je plots uit
+            met je zicht, ga dan direct naar de spoedeisende hulp.
           </p>
           {extra && <p className="mt-2 font-medium">{extra}</p>}
         </div>

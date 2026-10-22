@@ -134,23 +134,15 @@ export function CartDrawer() {
               className="border-t border-border bg-surface px-5 py-4 space-y-3"
               style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 1rem)" }}
             >
-              {/* Verzending-breakdown: per shipping-method een regel */}
-              {shipping.lines.length > 0 && (
-                <div className="rounded-md border border-border bg-paper-soft p-2.5 space-y-1.5">
-                  {shipping.lines.map((line) => (
-                    <div key={line.method} className="flex items-baseline justify-between gap-2 text-xs">
-                      <span className="inline-flex items-center gap-1.5 text-text-muted">
-                        <Truck size={11} className="text-accent shrink-0" />
-                        <span className="truncate">{line.label}</span>
-                      </span>
-                      <span className="font-medium text-text tabular shrink-0">{formatEUR(line.cents)}</span>
-                    </div>
-                  ))}
-                  {shipping.lines.length > 1 && (
-                    <p className="text-[10px] text-text-subtle leading-snug pt-1 border-t border-border">
-                      Producten uit verschillende magazijnen - twee aparte zendingen, daarom 2× verzendkosten.
-                    </p>
-                  )}
+              {shipping.shippingCents > 0 && (
+                <div className="rounded-md border border-border bg-paper-soft p-2.5">
+                  <div className="flex items-baseline justify-between gap-2 text-xs">
+                    <span className="inline-flex items-center gap-1.5 text-text-muted">
+                      <Truck size={11} className="text-accent shrink-0" />
+                      <span className="truncate">Verzending, een zending vanuit Nederland</span>
+                    </span>
+                    <span className="font-medium text-text tabular shrink-0">{formatEUR(shipping.shippingCents)}</span>
+                  </div>
                 </div>
               )}
               <div className="space-y-1.5">

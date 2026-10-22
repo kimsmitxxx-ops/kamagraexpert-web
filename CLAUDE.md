@@ -33,7 +33,7 @@ Next.js 14 App Router, TypeScript strict, Tailwind. Path alias `@/*` → `./src/
 - `/checkout` → `/checkout/bedankt/[orderId]` — bank-transfer + crypto uit `shops.payment_instructions` JSONB
 - `/account`, `/account/login`, `/account/orders/[id]` — noindex
 - `/begrippenlijst` — glossary van ED-termen (sildenafil, PDE5, tadalafil, half-life, etc)
-- Info pages: `/lab`, `/bezorging`, `/retourneren`, `/voorwaarden`, `/cookies`, `/privacy`, `/contact`, `/over-ons`
+- Info pages: `/lab` (herkomst en kwaliteit), `/bezorging`, `/retourneren`, `/voorwaarden`, `/cookies`, `/privacy`, `/contact`, `/over-ons`
 
 ### Verwijderde routes (t.o.v. anabolenpro-basis)
 
@@ -65,6 +65,31 @@ Categorieën (auto-created bij import):
 Praktisch, informatief en no-nonsense. Geen prestatie-angst pseudo-medische taal. Doelgroep 25-55 mannen die gewoon informatie willen. Concrete werkzame-stof namen (sildenafil, tadalafil, vardenafil) + hun onset/halfwaardetijd. Eerlijk over wisselwerkingen (nitraten, alfablokkers), wanneer arts consulteren, verschillen tussen merken en generiek.
 
 Zie `../shop-dash` → cron_schedules waar `slug=kamagraexpert AND agent_type=blog_writer` het bedrijfsprofiel voor de Schrijver-agent bevat.
+
+## Content in de database
+
+Producten, categorieen, de shop-rij en de blog-metadata worden gevuld door
+`../shop-dash/scripts/kamagraexpert-content.mjs`. Dat script is idempotent: het
+schrijft subtitle, description, long_description, meta, usps, faqs,
+specificaties, stof_slugs, package_type en sort_order per product, plus de
+intro- en SEO-teksten van de vijf categorieen. Pas de teksten daar aan en draai
+het script opnieuw, dan blijft de hele catalogus consistent.
+
+De oorspronkelijke import nam de productteksten van kamagrashop.nl over,
+inclusief links naar die shop en claims die niet kloppen. Die zijn vervangen.
+
+## RLS
+
+De site draait op de anon key. Zonder `shop-dash/supabase/051-kamagraexpert-public-read.sql`
+geeft de `categories`-tabel een lege lijst terug en geven alle
+`/winkel/<categorie>`-pagina's dus 404. Die migratie moet in de Supabase
+SQL-editor gedraaid zijn voordat een deploy zin heeft.
+
+## Lokaal bouwen naast een draaiende dev-server
+
+`next.config.js` leest `NEXT_DIST_DIR`. Draait er al een dev-server in dezelfde
+map, bouw dan met `NEXT_DIST_DIR=.next-check npm run build` zodat de twee elkaars
+`.next` niet slopen.
 
 ## Live-data rules
 

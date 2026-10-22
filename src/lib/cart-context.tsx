@@ -9,7 +9,6 @@ export type CartItem = {
   image: string | null;
   qty: number;
   /** "ut" voor UT-tagged producten, "rest" voor alle overige (default). */
-  shipping_method?: "ut" | "rest";
 };
 
 type Ctx = {
@@ -29,10 +28,10 @@ type Ctx = {
 };
 
 const CartCtx = createContext<Ctx | null>(null);
-const KEY = "anabolenpro.cart.v2";
+const KEY = "kamagraexpert.cart.v2";
 // Winkelwagen-persistentie: minimaal 48 uur (gedeelde regel over ALLE shops
 // binnen deze klant - retakopen, melashop, kamagraexpert, peptidehuis en
-// anabolenpro hanteren allen 30 dagen als bovengrens zodat 48u ruim gehaald
+// alle shops hanteren 30 dagen als bovengrens zodat 48u ruim gehaald
 // wordt). Items ouder dan MAX_AGE_MS worden bij hydration genegeerd.
 const MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000; // 30 dagen
 

@@ -17,7 +17,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Snelle antwoorden van ons team"
-        intro="Of het nu om een batch-COA, een retourvraag of een protocoladvies gaat: ons team reageert elke dag tussen 09:00 en 21:00."
+        intro="Vraag over je bestelling, over het verschil tussen twee middelen of over een levering die niet klopt: ons team reageert elke dag tussen 09:00 en 21:00."
       />
 
       <section className="mx-auto max-w-7xl px-4 py-14 grid gap-10 lg:grid-cols-[1fr_1.2fr]">
@@ -26,7 +26,7 @@ export default function ContactPage() {
             <MessageCircle size={20} className="text-accent" />
             <h3 className="mt-3 font-display text-lg text-primary-foreground">Online chat</h3>
             <p className="mt-1 text-sm text-primary-foreground/75">
-              Snelste route. Stuur foto&apos;s, batchnummers of een schermafbeelding van je order.
+              Snelste route. Stuur foto&apos;s van je strip of een schermafbeelding van je order mee.
             </p>
             <button
               type="button"
@@ -39,7 +39,7 @@ export default function ContactPage() {
             <Mail size={20} className="text-accent" />
             <h3 className="mt-3 font-display text-lg text-primary-foreground">Stuur ons een bericht</h3>
             <p className="mt-2 text-sm text-primary-foreground/75">
-              Gebruik het formulier hieronder. Zet je ordernummer erbij als het over een bestelling gaat, of vermeld je batchcode bij een lab-vraag. Antwoord binnen 1 werkdag.
+              Gebruik het formulier hieronder. Zet je ordernummer erbij als het over een bestelling gaat, of de batchcode van je strip als je twijfelt over de verpakking. Antwoord binnen 1 werkdag.
             </p>
           </div>
           <div className="rounded-md border border-primary-muted bg-primary p-6 text-primary-foreground">
@@ -52,10 +52,10 @@ export default function ContactPage() {
           </div>
           <div className="rounded-md border border-primary-muted bg-primary p-6 text-primary-foreground">
             <MapPin size={20} className="text-accent" />
-            <h3 className="mt-3 font-display text-lg text-primary-foreground">Magazijn (geen bezoek)</h3>
+            <h3 className="mt-3 font-display text-lg text-primary-foreground">Vestiging (geen bezoek)</h3>
             <p className="mt-1 text-sm text-primary-foreground/75">
-              Westhavenkade 12, 3134 NA Vlaardingen <br />
-              KvK + BTW-nummer op de factuur.
+              Wij verzenden vanuit Nederland. Bezoek aan het magazijn is niet mogelijk. <br />
+              Vestigingsadres, KvK- en BTW-nummer staan op de factuur.
             </p>
           </div>
         </div>
