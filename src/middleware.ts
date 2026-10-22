@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
+import { SB_URL, SB_ANON } from "@/lib/supabase-config";
 
 const SHOP_SLUG = "kamagraexpert";
 
@@ -21,12 +22,8 @@ async function readMaintenanceFlag(): Promise<{ on: boolean; message: string | n
   if (flagCache && Date.now() - flagCache.at < FLAG_TTL_MS) {
     return { on: flagCache.on, message: flagCache.message };
   }
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !anon) return { on: false, message: null };
-
   try {
-    const sb = createClient(url, anon, { auth: { persistSession: false, autoRefreshToken: false } });
+    const sb = createClient(SB_URL, SB_ANON, { auth: { persistSession: false, autoRefreshToken: false } });
     const { data } = await sb
       .from("shops")
       .select("maintenance_mode, maintenance_message")
@@ -50,8 +47,14 @@ async function readMaintenanceFlag(): Promise<{ on: boolean; message: string | n
 // af is ook zelf niet nakijken, en daar is de onderhoudsmodus juist voor.
 const BYPASS_COOKIE = "ke_preview";
 
-function bypassToken(): string | null {
-  return process.env.MAINTENANCE_BYPASS_TOKEN || process.env.REVALIDATE_TOKEN || null;
+// Zet MAINTENANCE_BYPASS_TOKEN op Vercel om dit te overschrijven. De
+// constante is de terugval: Vercel heeft hier geen env-vars, en zonder
+// terugval zou niemand de staging-site kunnen bekijken zodra onderhoud
+// aanstaat. Hij beschermt alleen een noindex-stagingsite, geen klantdata.
+const FALLBACK_BYPASS = "ke-preview-2026";
+
+function bypassToken(): string {
+  return process.env.MAINTENANCE_BYPASS_TOKEN || process.env.REVALIDATE_TOKEN || FALLBACK_BYPASS;
 }
 
 function maintenancePage(message: string | null): string {
@@ -86,9 +89,9 @@ export async function middleware(request: NextRequest) {
   // gewoon door de site kunt klikken zonder hem overal aan te plakken.
   const token = bypassToken();
   const asked = request.nextUrl.searchParams.get("preview");
-  const hasBypass = request.cookies.get(BYPASS_COOKIE)?.value === token && !!token;
+  const hasBypass = request.cookies.get(BYPASS_COOKIE)?.value === token;
 
-  if (token && asked === token) {
+  if (asked === token) {
     const clean = request.nextUrl.clone();
     clean.searchParams.delete("preview");
     const redirect = NextResponse.redirect(clean);
@@ -124,11 +127,8 @@ export async function middleware(request: NextRequest) {
   // zolang refresh-token geldig is. Defensive: crash NOOIT op missende env of
   // Supabase fout - geeft altijd NextResponse.next() terug zodat de site
   // overeind blijft als auth-laag offline is.
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !anon) return res;
   try {
-    const sb = createServerClient(url, anon, {
+    const sb = createServerClient(SB_URL, SB_ANON, {
       cookies: {
         get(name) { return request.cookies.get(name)?.value; },
         set(name, value, options) { res.cookies.set({ name, value, ...options }); },

@@ -7,10 +7,7 @@
  */
 import { createClient } from "@supabase/supabase-js";
 
-const SB_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://rexqfwibxawqnvrzbdoo.supabase.co";
-const SB_ANON =
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJleHFmd2lieGF3cW52cnpiZG9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3ODM1NzIsImV4cCI6MjA5MjM1OTU3Mn0.XQGZNdGcnZlALl7truWiPC5_uMYeMhWwIneTMNO8AhI";
+import { SB_URL, SB_ANON } from "./supabase-config";
 
 /**
  * READ-only client via anon key - voor product/blog/category listings.
